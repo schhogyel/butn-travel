@@ -1,12 +1,20 @@
 import React from "react";
 import { Formik, Form, Field } from "formik";
-import { Grid, makeStyles, InputLabel } from "@material-ui/core";
+import {
+  Grid,
+  makeStyles,
+  InputLabel,
+  MenuItem,
+  InputAdornment,
+  TextField
+} from "@material-ui/core";
+import { DateRangeTwoTone, PeopleTwoTone } from "@material-ui/icons";
 import DateFnsUtils from "@date-io/date-fns";
 import { MuiPickersUtilsProvider, DatePicker } from "@material-ui/pickers";
 import "date-fns";
-import TextField from "./TextField";
 import Button from "./Button";
 import Typography from "./Typography";
+// import { TextField } from "formik-material-ui";
 
 const useStyles = makeStyles(theme => ({
   form: {
@@ -18,27 +26,43 @@ const useStyles = makeStyles(theme => ({
   formTitle: {
     fontWeight: 500
   },
+  inputStyle: {
+    padding: theme.spacing(1),
+    backgroundColor: theme.palette.common.white
+  },
   label: {
     color: "#fff",
     textAlign: "left",
     marginBottom: theme.spacing(1)
+  },
+  buttonContainer: {
+    marginTop: theme.spacing(2)
   }
 }));
 
 const DatePickerField = (props: any) => {
+  const classes = useStyles();
   const currentError = props.form.errors[props.field.name];
 
   return (
     <MuiPickersUtilsProvider utils={DateFnsUtils}>
       <Grid container>
         <DatePicker
+          className={classes.inputStyle}
           fullWidth
           disablePast
-          InputProps={{ disableUnderline: true }}
+          InputProps={{
+            disableUnderline: true,
+            startAdornment: (
+              <InputAdornment position="start">
+                <DateRangeTwoTone />
+              </InputAdornment>
+            )
+          }}
           name={props.field.name}
           value={props.field.value}
-          format="dd/MM/yyyy"
-          TextFieldComponent={TextField}
+          format="eee dd/MM/yyyy"
+          // TextFieldComponent={TextField}
           helperText={currentError}
           error={Boolean(currentError)}
           onError={error => {
@@ -56,10 +80,57 @@ const DatePickerField = (props: any) => {
   );
 };
 
+const ranges = getNumberOfGuest(10);
+
+function getNumberOfGuest(num: number) {
+  let guestRanges = [];
+  for (let i = 1; i <= num; i++) {
+    guestRanges.push({ value: `${i}`, label: `${i}` });
+  }
+  return guestRanges;
+}
+
+const CustomSelect = (props: any) => {
+  const classes = useStyles();
+  return (
+    <TextField
+      select
+      fullWidth
+      className={classes.inputStyle}
+      name={props.field.name}
+      value={props.field.value}
+      onChange={(event: any) =>
+        props.form.setFieldValue(props.field.name, event.target.value, false)
+      }
+      InputProps={{
+        disableUnderline: true,
+        startAdornment: (
+          <InputAdornment position="start">
+            <PeopleTwoTone />
+          </InputAdornment>
+        )
+      }}
+    >
+      {ranges.map(option => (
+        <MenuItem key={option.value} value={option.value}>
+          {option.label}
+        </MenuItem>
+      ))}
+    </TextField>
+  );
+};
+
 const QuickForm = () => {
   const classes = useStyles();
   return (
-    <Formik onSubmit={console.log} initialValues={{ date: new Date() }}>
+    <Formik
+      onSubmit={console.log}
+      initialValues={{
+        arrival: new Date(),
+        departure: new Date(),
+        guests: ""
+      }}
+    >
       {() => (
         <Form className={classes.form}>
           <Grid container spacing={2}>
@@ -78,10 +149,15 @@ const QuickForm = () => {
             </Grid>
             <Grid item xs={12}>
               <InputLabel className={classes.label}> Guests</InputLabel>
-              <TextField fullWidth />
+              <Field name="guests" component={CustomSelect} />
             </Grid>
-            <Grid item xs={12}>
-              <Button color="secondary" variant="contained" fullWidth>
+            <Grid item xs={12} className={classes.buttonContainer}>
+              <Button
+                type="submit"
+                color="secondary"
+                variant="contained"
+                fullWidth
+              >
                 Book Now
               </Button>
             </Grid>
