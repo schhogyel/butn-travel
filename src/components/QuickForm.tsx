@@ -5,12 +5,14 @@ import DateFnsUtils from "@date-io/date-fns";
 import { MuiPickersUtilsProvider, DatePicker } from "@material-ui/pickers";
 import "date-fns";
 import TextField from "./TextField";
+import Button from "./Button";
+import Typography from "./Typography";
 
 const useStyles = makeStyles(theme => ({
   form: {
     maxWidth: 352,
     backgroundColor: theme.palette.primary.main,
-    padding: theme.spacing(2),
+    padding: theme.spacing(3),
     borderRadius: 2 * theme.shape.borderRadius
   },
   label: {
@@ -58,17 +60,27 @@ const QuickForm = () => {
       {() => (
         <Form className={classes.form}>
           <Grid container spacing={2}>
-            <Grid item container xs={12}>
+            <Grid item xs={12}>
+              <Typography variant="subtitle1">
+                Book your visit to Bhutan with us!
+              </Typography>
+            </Grid>
+            <Grid item xs={12}>
               <InputLabel className={classes.label}> Arrival</InputLabel>
               <Field name="arrival" component={DatePickerField} />
             </Grid>
-            <Grid item container xs={12}>
+            <Grid item xs={12}>
               <InputLabel className={classes.label}> Departure</InputLabel>
               <Field name="departure" component={DatePickerField} />
             </Grid>
-            <Grid item container xs={12}>
+            <Grid item xs={12}>
               <InputLabel className={classes.label}> Guests</InputLabel>
               <TextField fullWidth />
+            </Grid>
+            <Grid item xs={12}>
+              <Button color="secondary" variant="contained" fullWidth>
+                Book Now
+              </Button>
             </Grid>
           </Grid>
         </Form>
