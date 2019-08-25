@@ -15,6 +15,9 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(3),
     borderRadius: 2 * theme.shape.borderRadius
   },
+  formTitle: {
+    fontWeight: 500
+  },
   label: {
     color: "#fff",
     textAlign: "left",
@@ -61,7 +64,7 @@ const QuickForm = () => {
         <Form className={classes.form}>
           <Grid container spacing={2}>
             <Grid item xs={12}>
-              <Typography variant="subtitle1">
+              <Typography variant="subtitle1" className={classes.formTitle}>
                 Book your visit to Bhutan with us!
               </Typography>
             </Grid>
