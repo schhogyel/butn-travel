@@ -9,13 +9,14 @@ import Slide from "@material-ui/core/Slide";
 
 interface Props {
   children: React.ReactElement;
+  trigger: boolean;
   window?: () => Window;
 }
 
 function HideOnScroll(props: Props) {
-  const { children } = props;
+  const { children, trigger } = props;
 
-  const trigger = useScrollTrigger();
+  console.log(trigger);
 
   return (
     <Slide appear={false} direction="down" in={!trigger}>
@@ -25,6 +26,12 @@ function HideOnScroll(props: Props) {
 }
 
 const useStyles = makeStyles(theme => ({
+  primaryBg: {
+    background: theme.palette.primary.main
+  },
+  transparentBg: {
+    background: "transparent"
+  },
   menu: {
     [theme.breakpoints.down("sm")]: {
       display: "none"
@@ -80,13 +87,17 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function NavBar(props: any) {
+export default function NavBar(props: any) {
+  const trigger = useScrollTrigger();
   const classes = useStyles(props);
 
   return (
     <React.Fragment>
-      <HideOnScroll>
-        <AppBar position="fixed">
+      <HideOnScroll trigger={trigger}>
+        <AppBar
+          position="fixed"
+          className={props.trigger ? classes.transparentBg : classes.primaryBg}
+        >
           <Container>
             <Toolbar className={classes.toolbar}>
               <Link href="/">
@@ -142,5 +153,3 @@ function NavBar(props: any) {
     </React.Fragment>
   );
 }
-
-export default NavBar;

@@ -18,9 +18,9 @@ import Typography from "./Typography";
 
 const useStyles = makeStyles(theme => ({
   form: {
-    maxWidth: 352,
+    maxWidth: 365,
     backgroundColor: theme.palette.primary.main,
-    padding: theme.spacing(3),
+    padding: theme.spacing(4),
     borderRadius: 2 * theme.shape.borderRadius
   },
   formTitle: {
@@ -135,8 +135,8 @@ const QuickForm = () => {
         <Form className={classes.form}>
           <Grid container spacing={2}>
             <Grid item xs={12}>
-              <Typography variant="subtitle1" className={classes.formTitle}>
-                Book your visit to Bhutan with us!
+              <Typography variant="h5" className={classes.formTitle}>
+                Book Your Visit
               </Typography>
             </Grid>
             <Grid item xs={12}>

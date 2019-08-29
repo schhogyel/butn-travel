@@ -1,6 +1,6 @@
 import React from "react";
 import { withStyles, Theme } from "@material-ui/core/styles";
-// import { capitalize } from "@material-ui/core/utils";
+import { capitalize } from "@material-ui/core/utils";
 import MuiTypography from "@material-ui/core/Typography";
 
 const styles = (theme: Theme) => ({
@@ -8,7 +8,7 @@ const styles = (theme: Theme) => ({
     height: 4,
     width: 73,
     display: "block",
-    margin: `${theme.spacing(1)}px auto 0`,
+    margin: `${theme.spacing(2)}px auto 0`,
     backgroundColor: theme.palette.secondary.main
   },
   markedH3Center: {
@@ -50,13 +50,13 @@ function Typography(props: any) {
   return (
     <MuiTypography variantMapping={variantMapping} variant={variant} {...other}>
       {children}
-      {/* {marked ? (
+      {marked ? (
         <span
           className={
             classes[`marked${capitalize(variant) + capitalize(marked)}`]
           }
         />
-      ) : null} */}
+      ) : null}
     </MuiTypography>
   );
 }
