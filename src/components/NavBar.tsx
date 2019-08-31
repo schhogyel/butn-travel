@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { AppBar, Container } from "@material-ui/core";
 import Toolbar from "./Toolbar";
@@ -6,6 +6,7 @@ import Link from "./Link";
 import { Typography } from "@material-ui/core";
 import useScrollTrigger from "@material-ui/core/useScrollTrigger";
 import Slide from "@material-ui/core/Slide";
+import { useScrollPosition } from "./useScrollPosition";
 
 interface Props {
   children: React.ReactElement;
@@ -16,8 +17,6 @@ interface Props {
 function HideOnScroll(props: Props) {
   const { children, trigger } = props;
 
-  console.log(trigger);
-
   return (
     <Slide appear={false} direction="down" in={!trigger}>
       {children}
@@ -27,10 +26,12 @@ function HideOnScroll(props: Props) {
 
 const useStyles = makeStyles(theme => ({
   primaryBg: {
-    background: theme.palette.primary.main
+    background: theme.palette.primary.main,
+    transition: "0.3s cubic-bezier(.47,1.64,.41,.8)"
   },
   transparentBg: {
-    background: "transparent"
+    background: "transparent",
+    transition: "0.3s cubic-bezier(.47,1.64,.41,.8)"
   },
   menu: {
     [theme.breakpoints.down("sm")]: {
@@ -91,12 +92,30 @@ export default function NavBar(props: any) {
   const trigger = useScrollTrigger();
   const classes = useStyles(props);
 
+  const [hideOnScroll, setHideOnScroll] = useState(true);
+
+  useScrollPosition(
+    ({ prevPos, currPos }: any) => {
+      if (currPos.y > 100) {
+        setHideOnScroll(true);
+      } else {
+        setHideOnScroll(false);
+      }
+      console.log("curr", currPos.y);
+      console.log(prevPos.y);
+      console.log(hideOnScroll);
+    },
+    [hideOnScroll],
+    200
+  );
+
   return (
     <React.Fragment>
       <HideOnScroll trigger={trigger}>
         <AppBar
           position="fixed"
-          className={props.trigger ? classes.transparentBg : classes.primaryBg}
+          className={!hideOnScroll ? classes.transparentBg : classes.primaryBg}
+          elevation={!hideOnScroll ? 0 : 1}
         >
           <Container>
             <Toolbar className={classes.toolbar}>

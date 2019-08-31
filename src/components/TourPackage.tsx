@@ -6,18 +6,28 @@ import Grid from "@material-ui/core/Grid";
 import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
 import CardActions from "@material-ui/core/CardActions";
+import Chip from "@material-ui/core/Chip";
 // import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import { red } from "@material-ui/core/colors";
 // import FavoriteIcon from "@material-ui/icons/Favorite";
 // import ShareIcon from "@material-ui/icons/Share";
-import Button from "@material-ui/core/Button";
+import Button from "./Button";
 import Link from "next/link";
 
 const useStyles = makeStyles(theme => ({
+  card: {
+    position: "relative",
+    transition: "0.3s cubic-bezier(.47,1.64,.41,.8)",
+
+    "&:hover": {
+      transform: "scale(1.04)",
+      boxShadow: "0 4px 20px 0 rgba(0,0,0,255.12)"
+    }
+  },
   media: {
     height: 0,
-    paddingTop: "70%" // 16:9
+    paddingTop: "70%" // 16:9,
   },
   expand: {
     transform: "rotate(0deg)",
@@ -43,23 +53,43 @@ const useStyles = makeStyles(theme => ({
   },
   link: {
     textDecoration: "none"
+  },
+  tourName: {
+    fontWeight: 500
+  },
+  chip: {
+    margin: theme.spacing(1),
+    position: "absolute",
+    top: 0,
+    right: 0,
+    borderTopLeftRadius: theme.spacing(1),
+    borderBottomLeftRadius: theme.spacing(1),
+    borderTopRightRadius: 0,
+    borderBottomRightRadius: 0,
+    marginRight: 0
   }
 }));
 
-export default function TourPackage({ card, card: { img, description } }: any) {
+export default function TourPackage({ card, card: { img, name } }: any) {
   const classes = useStyles();
 
   return (
     <Grid item xs={12} sm={6} md={4}>
-      <Card elevation={0} square={true}>
+      <Card elevation={0} square={true} className={classes.card}>
         <CardMedia
           className={classes.media}
           image={`${img}`}
           title="Paella dish"
         />
+        <Chip label="Most popular" className={classes.chip} color="secondary" />
         <CardContent>
-          <Typography variant="body2" color="textSecondary" component="p">
-            {description}
+          <Typography
+            variant="h5"
+            color="textPrimary"
+            component="p"
+            className={classes.tourName}
+          >
+            {name}
           </Typography>
         </CardContent>
         <CardActions disableSpacing>
@@ -69,7 +99,6 @@ export default function TourPackage({ card, card: { img, description } }: any) {
           <IconButton aria-label="share">
             <ShareIcon />
           </IconButton> */}
-          <div className={classes.right} />
 
           <Link
             href={{
@@ -84,9 +113,11 @@ export default function TourPackage({ card, card: { img, description } }: any) {
               </Button>
             </a>
           </Link>
+          <div className={classes.right} />
+
           <Link href={"#booking-form"}>
             <a className={classes.link}>
-              <Button size="small" color="primary">
+              <Button size="small" color="primary" variant="outlined">
                 Book
               </Button>
             </a>

@@ -5,10 +5,12 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import TourPackage from "./TourPackage";
 import { tourPackages } from "../constants";
+import Button from "./Button";
 
 const useStyles = makeStyles(theme => ({
   root: {
-    background: "#f5f5f5"
+    // background: "#f5f5f5"
+    background: "#efeee5"
   },
   icon: {
     marginRight: theme.spacing(2)
@@ -41,6 +43,10 @@ const useStyles = makeStyles(theme => ({
   },
   title: {
     paddingBottom: theme.spacing(3)
+  },
+  moreButton: {
+    display: "flex",
+    marginTop: theme.spacing(4)
   }
 }));
 
@@ -59,13 +65,18 @@ export default function TourList() {
             className={classes.title}
             marked="center"
           >
-            OUR TOP TOURS
+            Our Top Tours
           </Typography>
         </Grid>
         <Grid container spacing={4}>
           {tourPackages
             .map(card => <TourPackage key={card.id} card={card} />)
             .slice(0, 3)}
+        </Grid>
+        <Grid className={classes.moreButton}>
+          <Button variant="contained" color="secondary">
+            More Tours
+          </Button>
         </Grid>
       </Container>
     </div>

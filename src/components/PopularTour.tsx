@@ -61,7 +61,7 @@ export default function TourList() {
             className={classes.title}
             marked="center"
           >
-            Popular Tours
+            Popular Destinations
           </Typography>
         </Grid>
         <Grid container spacing={4}>

@@ -24,7 +24,8 @@ const useStyles = makeStyles(theme => ({
     borderRadius: 2 * theme.shape.borderRadius
   },
   formTitle: {
-    fontWeight: 500
+    fontWeight: 500,
+    color: "#fff"
   },
   inputStyle: {
     padding: theme.spacing(1),

@@ -30,7 +30,7 @@ const rawTheme = createMuiTheme({
 const fontHeader = {
   color: rawTheme.palette.text.primary,
   fontWeight: rawTheme.typography.fontWeightMedium,
-  fontFamily: rawTheme.typography.fontFamily
+  fontFamily: "'Oswald', sans-serif"
 };
 
 const theme = {
@@ -72,6 +72,7 @@ const theme = {
     },
     h5: {
       ...rawTheme.typography.h5,
+      ...fontHeader,
       fontSize: 26,
       fontWeight: rawTheme.typography.fontWeightLight
     },
