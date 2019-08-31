@@ -7,6 +7,7 @@ import { Typography } from "@material-ui/core";
 import useScrollTrigger from "@material-ui/core/useScrollTrigger";
 import Slide from "@material-ui/core/Slide";
 import { useScrollPosition } from "./useScrollPosition";
+import clsx from "clsx";
 
 interface Props {
   children: React.ReactElement;
@@ -32,6 +33,9 @@ const useStyles = makeStyles(theme => ({
   transparentBg: {
     background: "transparent",
     transition: "0.3s cubic-bezier(.47,1.64,.41,.8)"
+  },
+  borderBottom: {
+    borderBottom: "1px solid rgba(255,255,255,0.3)"
   },
   menu: {
     [theme.breakpoints.down("sm")]: {
@@ -96,7 +100,7 @@ export default function NavBar(props: any) {
 
   useScrollPosition(
     ({ prevPos, currPos }: any) => {
-      if (currPos.y > 100) {
+      if (currPos.y > 120) {
         setHideOnScroll(true);
       } else {
         setHideOnScroll(false);
@@ -118,7 +122,13 @@ export default function NavBar(props: any) {
           elevation={!hideOnScroll ? 0 : 1}
         >
           <Container>
-            <Toolbar className={classes.toolbar}>
+            <Toolbar
+              className={
+                !hideOnScroll
+                  ? clsx(classes.toolbar, classes.borderBottom)
+                  : classes.toolbar
+              }
+            >
               <Link href="/">
                 <Typography
                   color="inherit"
