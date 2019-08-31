@@ -46,6 +46,7 @@ const useStyles = makeStyles(theme => ({
   },
   moreButton: {
     display: "flex",
+    justifyContent: "center",
     marginTop: theme.spacing(4)
   }
 }));

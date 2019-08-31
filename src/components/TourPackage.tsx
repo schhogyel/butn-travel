@@ -17,13 +17,13 @@ import Link from "next/link";
 
 const useStyles = makeStyles(theme => ({
   card: {
-    position: "relative",
-    transition: "0.3s cubic-bezier(.47,1.64,.41,.8)",
+    position: "relative"
+    // transition: "0.3s cubic-bezier(.47,1.64,.41,.8)",
 
-    "&:hover": {
-      transform: "scale(1.04)",
-      boxShadow: "0 4px 20px 0 rgba(0,0,0,255.12)"
-    }
+    // "&:hover": {
+    //   transform: "scale(1.04)",
+    //   boxShadow: "0 4px 20px 0 rgba(0,0,0,255,.5)"
+    // }
   },
   media: {
     height: 0,
@@ -62,8 +62,8 @@ const useStyles = makeStyles(theme => ({
     position: "absolute",
     top: 0,
     right: 0,
-    borderTopLeftRadius: theme.spacing(1),
-    borderBottomLeftRadius: theme.spacing(1),
+    borderTopLeftRadius: theme.spacing(0),
+    borderBottomLeftRadius: theme.spacing(0),
     borderTopRightRadius: 0,
     borderBottomRightRadius: 0,
     marginRight: 0
