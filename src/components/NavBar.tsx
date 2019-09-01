@@ -96,20 +96,17 @@ export default function NavBar(props: any) {
   const trigger = useScrollTrigger();
   const classes = useStyles(props);
 
-  const [hideOnScroll, setHideOnScroll] = useState(true);
+  const [transparentOnScroll, settransparentOnScroll] = useState(true);
 
   useScrollPosition(
-    ({ prevPos, currPos }: any) => {
+    ({ currPos }: any) => {
       if (currPos.y > 120) {
-        setHideOnScroll(true);
+        settransparentOnScroll(false);
       } else {
-        setHideOnScroll(false);
+        settransparentOnScroll(true);
       }
-      console.log("curr", currPos.y);
-      console.log(prevPos.y);
-      console.log(hideOnScroll);
     },
-    [hideOnScroll],
+    [transparentOnScroll],
     200
   );
 
@@ -118,13 +115,15 @@ export default function NavBar(props: any) {
       <HideOnScroll trigger={trigger}>
         <AppBar
           position="fixed"
-          className={!hideOnScroll ? classes.transparentBg : classes.primaryBg}
-          elevation={!hideOnScroll ? 0 : 1}
+          className={
+            transparentOnScroll ? classes.transparentBg : classes.primaryBg
+          }
+          elevation={transparentOnScroll ? 0 : 1}
         >
           <Container>
             <Toolbar
               className={
-                !hideOnScroll
+                transparentOnScroll
                   ? clsx(classes.toolbar, classes.borderBottom)
                   : classes.toolbar
               }

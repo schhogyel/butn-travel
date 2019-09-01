@@ -11,10 +11,10 @@ const useStyles = makeStyles(theme => ({
     marginTop: theme.spacing(3)
   },
   heightFiller: {
-    marginTop: 120
-    // [theme.breakpoints.up("sm")]: {
-    //   marginTop: 240
-    // }
+    marginTop: 120,
+    [theme.breakpoints.up("sm")]: {
+      marginTop: 240
+    }
   },
   background: {
     backgroundImage: `url(${backgroundImage})`,

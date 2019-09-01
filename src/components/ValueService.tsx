@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     padding: theme.spacing(0, 5)
   },
   image: {
-    height: 55
+    height: 110
   },
   title: {
     marginTop: theme.spacing(5),
@@ -47,58 +47,67 @@ export default function ValueService(props: any) {
           className={classes.curvyLines}
           alt="curvy lines"
         />
-        <Grid container spacing={5}>
-          <Grid item xs={12} md={4}>
+        <Grid container spacing={2}>
+          <Grid item xs={12} md={3}>
             <div className={classes.item}>
               <img
                 className={classes.image}
-                src="/static/themes/onepirate/productValues1.svg"
+                src="/static/passport.svg"
                 alt="suitcase"
               />
               <Typography variant="h6" className={classes.title}>
-                The best luxury hotels
+                Guaranteed visa
               </Typography>
-              <Typography variant="h5">
-                {
-                  "From the latest trendy boutique hotel to the iconic palace with XXL pool"
-                }
-                {
-                  ", go for a mini-vacation just a few subway stops away from your home."
-                }
+              <Typography variant="body1">
+                We have satisfied each and every one of our travellers' visa
+                issuance needs.
               </Typography>
             </div>
           </Grid>
-          <Grid item xs={12} md={4}>
+          <Grid item xs={12} md={3}>
             <div className={classes.item}>
               <img
                 className={classes.image}
-                src="/static/themes/onepirate/productValues2.svg"
+                src="/static/bill.svg"
                 alt="graph"
               />
               <Typography variant="h6" className={classes.title}>
-                New experiences
+                No hidden costs
               </Typography>
-              <Typography variant="h5">
-                {
-                  "Privatize a pool, take a Japanese bath or wake up in 900m2 of garden… "
-                }
-                {"your Sundays will not be alike."}
+              <Typography variant="body1">
+                You won't need to make any additional payments during your trip.
               </Typography>
             </div>
           </Grid>
-          <Grid item xs={12} md={4}>
+          <Grid item xs={12} md={3}>
             <div className={classes.item}>
               <img
                 className={classes.image}
-                src="/static/themes/onepirate/productValues3.svg"
+                src="/static/help.svg"
                 alt="clock"
               />
               <Typography variant="h6" className={classes.title}>
                 Exclusive rates
               </Typography>
-              <Typography variant="h5">
-                {"By registering, you will access specially negotiated rates "}
-                {"that you will not find anywhere else."}
+              <Typography variant="body1">
+                Our rates are competitive and provide great value. All services
+                and hotels are paid for.
+              </Typography>
+            </div>
+          </Grid>
+          <Grid item xs={12} md={3}>
+            <div className={classes.item}>
+              <img
+                className={classes.image}
+                src="/static/travel-guide.svg"
+                alt="clock"
+              />
+              <Typography variant="h6" className={classes.title}>
+                Guided tours
+              </Typography>
+              <Typography variant="body1">
+                We provide experienced local guides that will make your
+                experience richer.
               </Typography>
             </div>
           </Grid>
