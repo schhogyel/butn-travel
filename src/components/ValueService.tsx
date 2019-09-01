@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    padding: theme.spacing(0, 5)
+    padding: theme.spacing(0, 3)
   },
   image: {
     height: 110
@@ -43,7 +43,7 @@ export default function ValueService(props: any) {
     <section className={classes.root}>
       <Container className={classes.container}>
         <img
-          src="/static/themes/onepirate/productCurvyLines.png"
+          src="/static/productCurvyLines.png"
           className={classes.curvyLines}
           alt="curvy lines"
         />
@@ -83,15 +83,16 @@ export default function ValueService(props: any) {
             <div className={classes.item}>
               <img
                 className={classes.image}
-                src="/static/help.svg"
+                src="/static/customer-support.svg"
                 alt="clock"
               />
               <Typography variant="h6" className={classes.title}>
-                Exclusive rates
+                Build your own
               </Typography>
               <Typography variant="body1">
-                Our rates are competitive and provide great value. All services
-                and hotels are paid for.
+                Create your own special trip by adding short treks, upgrading
+                your hotel stays, witnessing a festival, or even attending a
+                wedding.
               </Typography>
             </div>
           </Grid>

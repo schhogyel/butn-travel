@@ -28,11 +28,11 @@ function HideOnScroll(props: Props) {
 const useStyles = makeStyles(theme => ({
   primaryBg: {
     background: theme.palette.primary.main,
-    transition: "0.3s cubic-bezier(.47,1.64,.41,.8)"
+    transition: "background 0.3s ease-in-out"
   },
   transparentBg: {
     background: "transparent",
-    transition: "0.3s cubic-bezier(.47,1.64,.41,.8)"
+    transition: "background 0.3s ease-in-out"
   },
   borderBottom: {
     borderBottom: "1px solid rgba(255,255,255,0.3)"
