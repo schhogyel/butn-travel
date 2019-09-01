@@ -13,7 +13,6 @@ const useStyles = makeStyles((theme: Theme) => ({
   container: {
     marginTop: theme.spacing(15),
     marginBottom: theme.spacing(30),
-    display: "flex",
     position: "relative"
   },
   item: {
@@ -27,6 +26,9 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   title: {
     marginTop: theme.spacing(5),
+    marginBottom: theme.spacing(5)
+  },
+  sectionTitle: {
     marginBottom: theme.spacing(5)
   },
   curvyLines: {
@@ -47,6 +49,18 @@ export default function ValueService(props: any) {
           className={classes.curvyLines}
           alt="curvy lines"
         />
+        <Grid>
+          <Typography
+            component="h1"
+            variant="h2"
+            align="center"
+            gutterBottom
+            className={classes.sectionTitle}
+            marked="center"
+          >
+            Our Benefits
+          </Typography>
+        </Grid>
         <Grid container spacing={2}>
           <Grid item xs={12} md={3}>
             <div className={classes.item}>

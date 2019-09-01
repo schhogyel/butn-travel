@@ -16,6 +16,9 @@ import Button from "./Button";
 import Link from "next/link";
 
 const useStyles = makeStyles(theme => ({
+  root: {
+    padding: theme.spacing(2)
+  },
   card: {
     position: "relative"
     // transition: "0.3s cubic-bezier(.47,1.64,.41,.8)",
@@ -74,7 +77,7 @@ export default function TourPackage({ card, card: { img, name } }: any) {
   const classes = useStyles();
 
   return (
-    <Grid item xs={12} sm={6} md={4}>
+    <Grid item xs={12} sm={6} md={4} className={classes.root}>
       <Card elevation={0} square={true} className={classes.card}>
         <CardMedia
           className={classes.media}
