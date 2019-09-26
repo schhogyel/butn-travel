@@ -128,13 +128,13 @@ export default function NavBar(props: any) {
                   : classes.toolbar
               }
             >
-              <Link href="/">
+              <Link href="/" underline="none">
                 <Typography
                   color="inherit"
                   className={classes.siteName}
                   variant="h4"
                 >
-                  Bhutan Wild Expedition
+                  Himalayan Bhutan
                 </Typography>
               </Link>
               <div className={classes.left} />
