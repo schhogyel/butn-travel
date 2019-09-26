@@ -8,7 +8,7 @@ import Button from "@material-ui/core/Button";
 import Stepper from "@material-ui/core/Stepper";
 import Step from "@material-ui/core/Step";
 import StepLabel from "@material-ui/core/StepLabel";
-import OutlinedInput from "@material-ui/core/OutlinedInput";
+// import OutlinedInput from "@material-ui/core/OutlinedInput";
 import FormGroup from "@material-ui/core/FormGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
@@ -20,7 +20,7 @@ import { makeStyles } from "@material-ui/styles";
 // import Back from "./common/Back";
 
 const qs = require("query-string");
-const backgroundShape = require("../images/shape.svg");
+// const backgroundShape = require("../images/shape.svg");
 
 const numeral = require("numeral");
 numeral.defaultFormat("0,000");
@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     flexGrow: 1,
     backgroundColor: theme.palette.primary.main,
     overflow: "hidden",
-    background: `url(${backgroundShape}) no-repeat`,
+    // background: `url(${backgroundShape}) no-repeat`,
     backgroundSize: "cover",
     backgroundPosition: "0 400px",
     marginTop: 10,
@@ -98,16 +98,16 @@ const getSteps = () => {
 };
 
 // class Wizard extends Component {
-function Wizard(props: any) {
+function Wizard() {
   const [activeStep, setActiveStep] = React.useState(0);
-  const [receivingAccount, setReceivingAccount] = React.useState(
-    "Home Account"
-  );
-  const [repaimentAccount, setRepaimentAccount] = React.useState(
-    "Saving Account"
-  );
+  // const [receivingAccount, setReceivingAccount] = React.useState(
+  //   "Home Account"
+  // );
+  // const [repaimentAccount, setRepaimentAccount] = React.useState(
+  //   "Saving Account"
+  // );
   const [termsChecked, setTermsChecked] = React.useState(false);
-  const [labelWidth, setLabelWidth] = React.useState(0);
+  // const [labelWidth, setLabelWidth] = React.useState(0);
 
   //   componentDidMount() {}
 
@@ -119,11 +119,11 @@ function Wizard(props: any) {
     setActiveStep(activeStep => activeStep - 1);
   };
 
-  const handleReset = () => {
-    setActiveStep(0);
-  };
+  // const handleReset = () => {
+  //   setActiveStep(0);
+  // };
 
-  const handleChange = (event: any) => {
+  const handleChange = () => {
     // this.setState({ [event.target.name]: event.target.value });
   };
 
@@ -155,7 +155,7 @@ function Wizard(props: any) {
 
   //   render() {
   const classes = useStyles();
-  const queryString = props.location.search;
+  const queryString = "";
   const parsed = queryString ? qs.parse(queryString) : {};
   const steps = getSteps();
   // const { activeStep } = this.state;
@@ -288,16 +288,7 @@ function Wizard(props: any) {
                             variant="outlined"
                             className={classes.formControl}
                           >
-                            <Select
-                              value={receivingAccount}
-                              onChange={handleChange}
-                              input={
-                                <OutlinedInput
-                                  labelWidth={labelWidth}
-                                  name="receivingAccount"
-                                />
-                              }
-                            >
+                            <Select onChange={handleChange}>
                               <MenuItem value="">
                                 <em></em>
                               </MenuItem>
@@ -472,16 +463,7 @@ function Wizard(props: any) {
                             variant="outlined"
                             className={classes.formControl}
                           >
-                            <Select
-                              value={repaimentAccount}
-                              onChange={handleChange}
-                              input={
-                                <OutlinedInput
-                                  labelWidth={labelWidth}
-                                  name="repaimentAccount"
-                                />
-                              }
-                            >
+                            <Select onChange={handleChange}>
                               <MenuItem value="">
                                 <em></em>
                               </MenuItem>
