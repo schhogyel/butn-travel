@@ -4,7 +4,11 @@ import { AppBar, Container, Grid, Divider } from "@material-ui/core";
 import Toolbar from "./Toolbar";
 import Link from "./Link";
 import { Typography } from "@material-ui/core";
-import { FlightLand, FlightTakeoff, People } from "@material-ui/icons";
+import {
+  PeopleTwoTone,
+  FlightTakeoffTwoTone,
+  FlightLandTwoTone
+} from "@material-ui/icons";
 
 const useStyles = makeStyles(theme => ({
   primaryBg: {
@@ -57,6 +61,12 @@ const useStyles = makeStyles(theme => ({
   bookingItem: {
     color: "#fff"
   },
+  journeyLabel: {
+    color: theme.palette.secondary.main
+  },
+  journeyValue: {
+    fontSize: 18
+  },
   logoContainer: {
     position: "relative",
     width: 120
@@ -75,6 +85,10 @@ const useStyles = makeStyles(theme => ({
   },
   divider: {
     backgroundColor: "rgba(255, 255, 255, 0.5)"
+  },
+  gridContainer: {
+    alignItems: "center",
+    height: "70px"
   }
 }));
 
@@ -97,19 +111,22 @@ export default function BookingNavBar(props: any) {
             </Link>
             <div className={classes.right} />
             <nav className={classes.menu}>
-              <Grid container spacing={1} style={{ height: "70px" }}>
+              <Grid container spacing={1} className={classes.gridContainer}>
                 <Divider
                   orientation="vertical"
                   light
                   className={classes.divider}
                 />
                 <Grid item xs={3} className={classes.itemContainer}>
-                  <FlightLand />
+                  <FlightLandTwoTone color="secondary" />
                   <div className={classes.textContainer}>
-                    <Typography className={classes.bookingItem} variant="h6">
+                    <Typography className={classes.journeyLabel} variant="h6">
                       Arrival
                     </Typography>
-                    <Typography className={classes.bookingItem} variant="body2">
+                    <Typography
+                      className={classes.journeyValue}
+                      variant="body2"
+                    >
                       26th Jan
                     </Typography>
                   </div>
@@ -120,12 +137,15 @@ export default function BookingNavBar(props: any) {
                   className={classes.divider}
                 />
                 <Grid item xs={3} className={classes.itemContainer}>
-                  <FlightTakeoff />
+                  <FlightTakeoffTwoTone color="secondary" />
                   <div className={classes.textContainer}>
-                    <Typography className={classes.bookingItem} variant="h6">
+                    <Typography className={classes.journeyLabel} variant="h6">
                       Departure
                     </Typography>
-                    <Typography className={classes.bookingItem} variant="body2">
+                    <Typography
+                      className={classes.journeyValue}
+                      variant="body2"
+                    >
                       26th Feb
                     </Typography>
                   </div>
@@ -136,12 +156,16 @@ export default function BookingNavBar(props: any) {
                   className={classes.divider}
                 />
                 <Grid item xs={3} className={classes.itemContainer}>
-                  <People />
+                  <PeopleTwoTone color="secondary" />
                   <div className={classes.textContainer}>
-                    <Typography className={classes.bookingItem} variant="h6">
+                    <Typography className={classes.journeyLabel} variant="h6">
                       Guests
                     </Typography>
-                    <Typography className={classes.bookingItem} variant="body2">
+                    <Typography
+                      className={classes.journeyValue}
+                      variant="body2"
+                      align="center"
+                    >
                       6
                     </Typography>
                   </div>
