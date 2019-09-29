@@ -1,19 +1,18 @@
-import React from "react";
-import Container from "@material-ui/core/Container";
-import Typography from "@material-ui/core/Typography";
-import Box from "@material-ui/core/Box";
-import ProTip from "../src/ProTip";
-import Link from "../src/components/Link";
+import React from 'react';
+import Container from '@material-ui/core/Container';
+import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
+import Link from '../src/components/Link';
 
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
-      {"Copyright © "}
+      {'Copyright © '}
       <Link color="inherit" href="https://material-ui.com/">
         Your Website
-      </Link>{" "}
+      </Link>{' '}
       {new Date().getFullYear()}
-      {". Built with "}
+      {'. Built with '}
       <Link color="inherit" href="https://material-ui.com/">
         Material-UI.
       </Link>
@@ -29,7 +28,6 @@ export default function App() {
           Next.js with TypeScript example
         </Typography>
         <Link href="/">Go to the main page</Link>
-        <ProTip />
         <Copyright />
       </Box>
     </Container>
