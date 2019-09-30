@@ -7,7 +7,8 @@ import {
   Typography,
   FormControlLabel,
   Switch,
-  Theme
+  Theme,
+  Divider
 } from '@material-ui/core';
 import * as Yup from 'yup';
 import { makeStyles } from '@material-ui/styles';
@@ -70,13 +71,13 @@ const TravellerForm: React.SFC = () => {
                   <React.Fragment>
                     {values.travellers && values.travellers.length > 0
                       ? values.travellers.map((_, index) => (
-                          <Grid container key={index} spacing={2}>
+                          <React.Fragment key={index}>
                             <Grid item xs={4}>
                               <Typography
                                 variant="subtitle1"
                                 style={{ fontWeight: 'bold' }}
                               >
-                                Adult 1
+                                Traveller {index + 1}
                               </Typography>
                             </Grid>
 
@@ -164,7 +165,11 @@ const TravellerForm: React.SFC = () => {
                                 </Grid>
                               </React.Fragment>
                             )}
-                          </Grid>
+                            <Grid item xs={4}></Grid>
+                            <Grid item xs={8}>
+                              <Divider style={{ width: '100%' }} />
+                            </Grid>
+                          </React.Fragment>
                         ))
                       : null}
                   </React.Fragment>
@@ -175,7 +180,7 @@ const TravellerForm: React.SFC = () => {
                   Contact Details
                 </Typography>
               </Grid>
-              <Grid xs={8}>
+              <Grid item xs={8}>
                 <Field
                   type="text"
                   name="contactPerson"

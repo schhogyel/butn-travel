@@ -16,6 +16,9 @@ declare module '@material-ui/core/styles/createMuiTheme' {
         '800'?: string;
         '900'?: string;
       };
+      yellow: {
+        '50': string;
+      };
     };
   }
   // allow configuration using `createMuiTheme`
@@ -32,6 +35,9 @@ declare module '@material-ui/core/styles/createMuiTheme' {
         '700'?: string;
         '800'?: string;
         '900'?: string;
+      };
+      yellow?: {
+        '50'?: string;
       };
     };
   }
@@ -50,6 +56,9 @@ const rawTheme = createMuiTheme({
       '700': '#3E4C59',
       '800': '#323F4B',
       '900': '#1F2933'
+    },
+    yellow: {
+      '50': '#DE911D'
     }
   },
   palette: {

@@ -1,5 +1,5 @@
-import React from "react";
-import { Formik, Form, Field } from "formik";
+import React from 'react';
+import { Formik, Form, Field } from 'formik';
 import {
   Grid,
   makeStyles,
@@ -7,13 +7,13 @@ import {
   MenuItem,
   InputAdornment,
   TextField
-} from "@material-ui/core";
-import { DateRangeTwoTone, PeopleTwoTone } from "@material-ui/icons";
-import DateFnsUtils from "@date-io/date-fns";
-import { MuiPickersUtilsProvider, DatePicker } from "@material-ui/pickers";
-import "date-fns";
-import Button from "./Button";
-import Typography from "./Typography";
+} from '@material-ui/core';
+import { DateRangeTwoTone, PeopleTwoTone } from '@material-ui/icons';
+import DateFnsUtils from '@date-io/date-fns';
+import { MuiPickersUtilsProvider, DatePicker } from '@material-ui/pickers';
+import 'date-fns';
+import Button from './Button';
+import Typography from './Typography';
 // import { TextField } from "formik-material-ui";
 
 const useStyles = makeStyles(theme => ({
@@ -25,15 +25,16 @@ const useStyles = makeStyles(theme => ({
   },
   formTitle: {
     fontWeight: 500,
-    color: "#fff"
+    color: '#fff'
   },
   inputStyle: {
     padding: theme.spacing(1),
-    backgroundColor: theme.palette.common.white
+    backgroundColor: theme.palette.common.white,
+    borderRadius: theme.shape.borderRadius
   },
   label: {
-    color: "#fff",
-    textAlign: "left",
+    color: '#fff',
+    textAlign: 'left',
     marginBottom: theme.spacing(1)
   },
   buttonContainer: {
@@ -129,7 +130,7 @@ const QuickForm = () => {
       initialValues={{
         arrival: new Date(),
         departure: new Date(),
-        guests: ""
+        guests: ''
       }}
     >
       {() => (
@@ -157,6 +158,7 @@ const QuickForm = () => {
                 type="submit"
                 color="secondary"
                 variant="contained"
+                size="large"
                 fullWidth
               >
                 Book Now

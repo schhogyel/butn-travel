@@ -23,7 +23,8 @@ const useStyles = makeStyles((theme: Theme) => ({
     marginTop: 10,
     padding: 20,
     paddingTop: 60,
-    paddingBottom: 200
+    paddingBottom: 200,
+    backgroundColor: theme.color.neutral[50]
   },
   grid: {
     margin: `0 ${theme.spacing(2)}px`
@@ -52,8 +53,8 @@ const useStyles = makeStyles((theme: Theme) => ({
     justifyContent: 'center'
   },
   cardGrid: {
-    paddingTop: theme.spacing(8),
-    paddingBottom: theme.spacing(8)
+    paddingTop: theme.spacing(3),
+    paddingBottom: theme.spacing(3)
   }
 }));
 

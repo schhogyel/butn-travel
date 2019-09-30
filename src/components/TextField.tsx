@@ -48,7 +48,7 @@ const useStyles = makeStyles(theme => ({
     width: `calc(100% - ${25 * 2}px)`
   },
   formLabel: {
-    fontSize: 18
+    // fontSize: 18
   },
   select: {
     height: 'auto',

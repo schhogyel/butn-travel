@@ -1,26 +1,26 @@
-import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import Card from "@material-ui/core/Card";
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import Card from '@material-ui/core/Card';
 // import CardHeader from "@material-ui/core/CardHeader";
-import Grid from "@material-ui/core/Grid";
-import CardMedia from "@material-ui/core/CardMedia";
-import CardContent from "@material-ui/core/CardContent";
-import CardActions from "@material-ui/core/CardActions";
-import Chip from "@material-ui/core/Chip";
+import Grid from '@material-ui/core/Grid';
+import CardMedia from '@material-ui/core/CardMedia';
+import CardContent from '@material-ui/core/CardContent';
+import CardActions from '@material-ui/core/CardActions';
+import Chip from '@material-ui/core/Chip';
 // import IconButton from "@material-ui/core/IconButton";
-import Typography from "@material-ui/core/Typography";
-import { red } from "@material-ui/core/colors";
+import Typography from '@material-ui/core/Typography';
+import { red } from '@material-ui/core/colors';
 // import FavoriteIcon from "@material-ui/icons/Favorite";
 // import ShareIcon from "@material-ui/icons/Share";
-import Button from "./Button";
-import Link from "next/link";
+import Button from './Button';
+import Link from 'next/link';
 
 const useStyles = makeStyles(theme => ({
   root: {
     padding: theme.spacing(2)
   },
   card: {
-    position: "relative"
+    position: 'relative'
     // transition: "0.3s cubic-bezier(.47,1.64,.41,.8)",
 
     // "&:hover": {
@@ -30,17 +30,17 @@ const useStyles = makeStyles(theme => ({
   },
   media: {
     height: 0,
-    paddingTop: "70%" // 16:9,
+    paddingTop: '70%' // 16:9,
   },
   expand: {
-    transform: "rotate(0deg)",
-    marginLeft: "auto",
-    transition: theme.transitions.create("transform", {
+    transform: 'rotate(0deg)',
+    marginLeft: 'auto',
+    transition: theme.transitions.create('transform', {
       duration: theme.transitions.duration.shortest
     })
   },
   expandOpen: {
-    transform: "rotate(180deg)"
+    transform: 'rotate(180deg)'
   },
   avatar: {
     backgroundColor: red[500]
@@ -51,20 +51,22 @@ const useStyles = makeStyles(theme => ({
   },
   right: {
     flex: 1,
-    display: "flex",
-    justifyContent: "flex-end"
+    display: 'flex',
+    justifyContent: 'flex-end'
   },
   link: {
-    textDecoration: "none"
+    textDecoration: 'none'
   },
   tourName: {
     fontWeight: 500
   },
   chip: {
     margin: theme.spacing(1),
-    position: "absolute",
+    position: 'absolute',
     top: 0,
     right: 0,
+    color: theme.palette.common.white,
+    backgroundColor: theme.color.yellow[50],
     borderTopLeftRadius: theme.spacing(0),
     borderBottomLeftRadius: theme.spacing(0),
     borderTopRightRadius: 0,
@@ -84,7 +86,7 @@ export default function TourPackage({ card, card: { img, name } }: any) {
           image={`${img}`}
           title="Paella dish"
         />
-        <Chip label="Most popular" className={classes.chip} color="secondary" />
+        <Chip label="Most popular" className={classes.chip} />
         <CardContent>
           <Typography
             variant="h5"
@@ -105,7 +107,7 @@ export default function TourPackage({ card, card: { img, name } }: any) {
 
           <Link
             href={{
-              pathname: "/tour",
+              pathname: '/tour',
               query: { card: JSON.stringify(card) }
             }}
             as="/tour/package"
@@ -118,7 +120,7 @@ export default function TourPackage({ card, card: { img, name } }: any) {
           </Link>
           <div className={classes.right} />
 
-          <Link href={"#booking-form"}>
+          <Link href={'#booking-form'}>
             <a className={classes.link}>
               <Button size="small" color="primary" variant="outlined">
                 Book

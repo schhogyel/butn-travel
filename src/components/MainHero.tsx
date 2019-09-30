@@ -1,10 +1,10 @@
-import React from "react";
-import { makeStyles, Typography, Grid } from "@material-ui/core";
-import HeroLayout from "./HeroLayout";
-import QuickForm from "./QuickForm";
+import React from 'react';
+import { makeStyles, Typography, Grid } from '@material-ui/core';
+import HeroLayout from './HeroLayout';
+import QuickForm from './QuickForm';
 
 const backgroundImage =
-  "../../static/images/punakha-dzong-fortress-monastery-mountain-landscape-punakha.jpg";
+  '../../static/images/punakha-dzong-fortress-monastery-mountain-landscape-punakha.jpg';
 
 const useStyles = makeStyles(theme => ({
   formContainer: {
@@ -12,14 +12,14 @@ const useStyles = makeStyles(theme => ({
   },
   heightFiller: {
     marginTop: 120,
-    [theme.breakpoints.up("sm")]: {
-      marginTop: 240
+    [theme.breakpoints.up('lg')]: {
+      marginTop: 120
     }
   },
   background: {
     backgroundImage: `url(${backgroundImage})`,
-    backgroundColor: "#7fc7d9",
-    backgroundPosition: "center"
+    backgroundColor: '#7fc7d9',
+    backgroundPosition: 'center'
   },
   button: {
     minWidth: 200
@@ -27,7 +27,7 @@ const useStyles = makeStyles(theme => ({
   h5: {
     marginBottom: theme.spacing(4),
     marginTop: theme.spacing(4),
-    [theme.breakpoints.up("sm")]: {
+    [theme.breakpoints.up('sm')]: {
       marginTop: theme.spacing(10)
     }
   },
