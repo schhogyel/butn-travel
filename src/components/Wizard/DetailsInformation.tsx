@@ -77,8 +77,8 @@ export default function DetailsInformation() {
           </div>
         </div>
         <div className={classes.borderColumn}>
-          <Grid item container xs={12} style={{ marginBottom: 32 }}>
-            <Grid item xs={6}>
+          <Grid item container style={{ marginBottom: 32 }} spacing={1}>
+            <Grid item xs={8}>
               <TravellerForm />
             </Grid>
           </Grid>

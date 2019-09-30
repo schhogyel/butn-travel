@@ -1,9 +1,22 @@
 import React from 'react';
-import { Formik, Form, Field } from 'formik';
+import { Formik, Form, Field, FieldArray } from 'formik';
 import TextField from '../TextField';
 // import Button from '../Button';
-import { Grid, Typography, FormControlLabel, Switch } from '@material-ui/core';
+import {
+  Grid,
+  Typography,
+  FormControlLabel,
+  Switch,
+  Theme
+} from '@material-ui/core';
 import * as Yup from 'yup';
+import { makeStyles } from '@material-ui/styles';
+
+const useStyles = makeStyles((theme: Theme) => ({
+  switchContainer: {
+    padding: theme.spacing(1)
+  }
+}));
 
 const FormSchema = Yup.object().shape({
   email: Yup.string()
@@ -11,160 +24,210 @@ const FormSchema = Yup.object().shape({
     .required('Email is required')
 });
 
-const TravellerForm: React.SFC = () => (
-  <div>
-    <Formik
-      initialValues={{ email: '', password: '', hasPassport: false }}
-      validationSchema={FormSchema}
-      onSubmit={(values, { setSubmitting }) => {
-        console.log(values);
-        setSubmitting(false);
-      }}
-    >
-      {() => (
-        <Form>
-          <Grid container>
-            <Grid item xs={12}>
-              <Typography variant="subtitle1" style={{ fontWeight: 'bold' }}>
-                Adult 1
-              </Typography>
+const TravellerForm: React.SFC = () => {
+  const classes = useStyles();
+  return (
+    <div>
+      <Formik
+        initialValues={{
+          travellers: [
+            {
+              title: '',
+              fullName: '',
+              dateOfBirth: '',
+              hasPassport: false,
+              country: '',
+              passportNumber: '',
+              expiry: ''
+            },
+            {
+              title: '',
+              fullName: '',
+              dateOfBirth: '',
+              hasPassport: false,
+              country: '',
+              passportNumber: '',
+              expiry: ''
+            }
+          ],
+          contactPerson: '',
+          address: '',
+          phone: '',
+          email: '',
+          confirmEmail: ''
+        }}
+        validationSchema={FormSchema}
+        onSubmit={(values, { setSubmitting }) => {
+          console.log(values);
+          setSubmitting(false);
+        }}
+      >
+        {({ values, handleChange }) => (
+          <Form>
+            <Grid container spacing={2}>
+              <FieldArray name="travellers">
+                {() => (
+                  <React.Fragment>
+                    {values.travellers && values.travellers.length > 0
+                      ? values.travellers.map((_, index) => (
+                          <Grid container key={index} spacing={2}>
+                            <Grid item xs={4}>
+                              <Typography
+                                variant="subtitle1"
+                                style={{ fontWeight: 'bold' }}
+                              >
+                                Adult 1
+                              </Typography>
+                            </Grid>
+
+                            <Grid item xs={8}>
+                              <Field
+                                label="Title"
+                                type="text"
+                                name={`travellers.${index}.title`}
+                                margin="normal"
+                                variant="outlined"
+                                fullWidth
+                                component={TextField}
+                              />
+
+                              <Field
+                                label="Name"
+                                type="text"
+                                name={`travellers.${index}.fullName`}
+                                margin="normal"
+                                variant="outlined"
+                                fullWidth
+                                component={TextField}
+                              />
+
+                              <Field
+                                label="Date of Birth"
+                                type="text"
+                                name={`travellers.${index}.dateOfBirth`}
+                                margin="normal"
+                                variant="outlined"
+                                fullWidth
+                                component={TextField}
+                              />
+                            </Grid>
+                            <Grid
+                              container
+                              justify="flex-end"
+                              className={classes.switchContainer}
+                            >
+                              <FormControlLabel
+                                control={
+                                  <Switch
+                                    name={`travellers.${index}.hasPassport`}
+                                    color="primary"
+                                    onChange={handleChange}
+                                  />
+                                }
+                                label="Do you have your passport details?"
+                                labelPlacement="start"
+                              />
+                            </Grid>
+                            {values.travellers[index].hasPassport && (
+                              <React.Fragment>
+                                <Grid item xs={4}></Grid>
+                                <Grid item xs={8}>
+                                  <Field
+                                    label="Country"
+                                    type="text"
+                                    name={`travellers.${index}.country`}
+                                    margin="normal"
+                                    variant="outlined"
+                                    fullWidth
+                                    component={TextField}
+                                  />
+
+                                  <Field
+                                    label="Passport Number"
+                                    type="text"
+                                    name={`travellers.${index}.passportNumber`}
+                                    margin="normal"
+                                    variant="outlined"
+                                    fullWidth
+                                    component={TextField}
+                                  />
+
+                                  <Field
+                                    label="Expiry"
+                                    type="text"
+                                    name={`travellers.${index}.expiry`}
+                                    margin="normal"
+                                    variant="outlined"
+                                    fullWidth
+                                    component={TextField}
+                                  />
+                                </Grid>
+                              </React.Fragment>
+                            )}
+                          </Grid>
+                        ))
+                      : null}
+                  </React.Fragment>
+                )}
+              </FieldArray>
+              <Grid item xs={4}>
+                <Typography variant="subtitle1" style={{ fontWeight: 'bold' }}>
+                  Contact Details
+                </Typography>
+              </Grid>
+              <Grid xs={8}>
+                <Field
+                  type="text"
+                  name="contactPerson"
+                  label="Who to contact"
+                  margin="normal"
+                  variant="outlined"
+                  fullWidth
+                  component={TextField}
+                />
+                <Field
+                  type="text"
+                  name="address"
+                  label="Address"
+                  margin="normal"
+                  variant="outlined"
+                  fullWidth
+                  component={TextField}
+                />
+                <Field
+                  type="text"
+                  name="phone"
+                  label="Phone No."
+                  margin="normal"
+                  variant="outlined"
+                  fullWidth
+                  component={TextField}
+                />
+                <Field
+                  type="text"
+                  name="email"
+                  label="Email"
+                  margin="normal"
+                  variant="outlined"
+                  fullWidth
+                  component={TextField}
+                />
+                <Field
+                  type="text"
+                  name="confirmEmail"
+                  label="Confirm Email"
+                  margin="normal"
+                  variant="outlined"
+                  fullWidth
+                  component={TextField}
+                />
+              </Grid>
             </Grid>
-            <Grid item xs={12}>
-              <Field
-                label="Title"
-                type="text"
-                name="title"
-                margin="normal"
-                variant="outlined"
-                fullWidth
-                component={TextField}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <Field
-                label="Name"
-                type="text"
-                name="fullName"
-                margin="normal"
-                variant="outlined"
-                fullWidth
-                component={TextField}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <Field
-                label="Date of Birth"
-                type="text"
-                name="dateOfBirth"
-                margin="normal"
-                variant="outlined"
-                fullWidth
-                component={TextField}
-              />
-            </Grid>
-            <FormControlLabel
-              control={<Switch name="hasPassport" color="primary" />}
-              label="Do you have your passport details?"
-              labelPlacement="start"
-            />
-            <Grid item xs={12}>
-              <Field
-                label="Country"
-                type="text"
-                name="country"
-                margin="normal"
-                variant="outlined"
-                fullWidth
-                component={TextField}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <Field
-                label="Passport Number"
-                type="text"
-                name="passportNumber"
-                margin="normal"
-                variant="outlined"
-                fullWidth
-                component={TextField}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <Field
-                label="Expiry"
-                type="text"
-                name="expiry"
-                margin="normal"
-                variant="outlined"
-                fullWidth
-                component={TextField}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <Typography variant="subtitle1" style={{ fontWeight: 'bold' }}>
-                Contact Details
-              </Typography>
-            </Grid>
-            <Grid xs={12}>
-              <Field
-                type="text"
-                name="contact"
-                label="Who to contact"
-                margin="normal"
-                variant="outlined"
-                fullWidth
-                component={TextField}
-              />
-            </Grid>
-            <Grid xs={12}>
-              <Field
-                type="text"
-                name="address"
-                label="Address"
-                margin="normal"
-                variant="outlined"
-                fullWidth
-                component={TextField}
-              />
-            </Grid>
-            <Grid xs={12}>
-              <Field
-                type="text"
-                name="phone"
-                label="Phone No."
-                margin="normal"
-                variant="outlined"
-                fullWidth
-                component={TextField}
-              />
-            </Grid>
-            <Grid xs={12}>
-              <Field
-                type="text"
-                name="email"
-                label="Email"
-                margin="normal"
-                variant="outlined"
-                fullWidth
-                component={TextField}
-              />
-            </Grid>
-            <Grid xs={12}>
-              <Field
-                type="text"
-                name="confirmEmail"
-                label="Confirm Email"
-                margin="normal"
-                variant="outlined"
-                fullWidth
-                component={TextField}
-              />
-            </Grid>
-          </Grid>
-        </Form>
-      )}
-    </Formik>
-  </div>
-);
+          </Form>
+        )}
+      </Formik>
+    </div>
+  );
+};
 
 export default TravellerForm;
