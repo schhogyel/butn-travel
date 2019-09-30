@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { AppBar, Container, Grid, Divider } from '@material-ui/core';
 import Toolbar from './Toolbar';
@@ -9,6 +9,9 @@ import {
   FlightTakeoffTwoTone,
   FlightLandTwoTone
 } from '@material-ui/icons';
+import { format } from 'date-fns';
+
+import JourneyContext from '../pages/JourneyContext';
 
 const useStyles = makeStyles(theme => ({
   primaryBg: {
@@ -92,6 +95,8 @@ const useStyles = makeStyles(theme => ({
 
 export default function BookingNavBar(props: any) {
   const classes = useStyles(props);
+  const { journey, setJourney } = useContext(JourneyContext);
+  console.log({ journey, setJourney });
 
   return (
     <React.Fragment>
@@ -125,7 +130,7 @@ export default function BookingNavBar(props: any) {
                       className={classes.journeyValue}
                       variant="subtitle1"
                     >
-                      26th Jan
+                      {format(journey.arrivalDate, 'do MMM')}
                     </Typography>
                   </div>
                 </Grid>
@@ -144,7 +149,7 @@ export default function BookingNavBar(props: any) {
                       className={classes.journeyValue}
                       variant="subtitle1"
                     >
-                      26th Feb
+                      {format(journey.departureDate, 'do MMM')}
                     </Typography>
                   </div>
                 </Grid>
@@ -164,7 +169,7 @@ export default function BookingNavBar(props: any) {
                       variant="subtitle1"
                       align="center"
                     >
-                      6
+                      {journey.noOfTravellers}
                     </Typography>
                   </div>
                 </Grid>

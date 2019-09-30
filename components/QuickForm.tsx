@@ -1,5 +1,6 @@
 import React from 'react';
 import { Formik, Form, Field } from 'formik';
+import Router from 'next/router';
 import {
   Grid,
   makeStyles,
@@ -14,6 +15,7 @@ import { MuiPickersUtilsProvider, DatePicker } from '@material-ui/pickers';
 import 'date-fns';
 import Button from './Button';
 import Typography from './Typography';
+import JourneyContext from '../pages/JourneyContext';
 
 const useStyles = makeStyles(theme => ({
   form: {
@@ -123,9 +125,19 @@ const CustomSelect = (props: any) => {
 
 const QuickForm = () => {
   const classes = useStyles();
+  const { journey, setJourney } = React.useContext(JourneyContext);
+  console.log(journey);
+
   return (
     <Formik
-      onSubmit={console.log}
+      onSubmit={values => {
+        setJourney({
+          arrivalDate: values.arrival,
+          departureDate: values.departure,
+          noOfTravellers: Number(values.guests)
+        });
+        Router.push('/booking');
+      }}
       initialValues={{
         arrival: new Date(),
         departure: new Date(),

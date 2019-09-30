@@ -4,15 +4,10 @@ import Head from 'next/head';
 import { ThemeProvider } from '@material-ui/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import theme from '../theme';
-import withReduxStore, { Store } from '../lib/with-redux-store';
-import { Provider } from 'react-redux';
+import { JourneyProvider } from './JourneyContext';
 
-interface Props {
-  reduxStore: Store;
-}
-class MyApp extends App<Props & any> {
+class MyApp extends App {
   componentDidMount() {
-    // Remove the server-side injected CSS.
     const jssStyles = document.querySelector('#jss-server-side');
     if (jssStyles) {
       jssStyles.parentNode!.removeChild(jssStyles);
@@ -20,23 +15,22 @@ class MyApp extends App<Props & any> {
   }
 
   render() {
-    const { Component, pageProps, reduxStore } = this.props;
+    const { Component, pageProps } = this.props;
 
     return (
-      <Provider store={reduxStore}>
-        <Container>
-          <Head>
-            <title>Himalayan Bhutan</title>
-          </Head>
-          <ThemeProvider theme={theme}>
-            {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-            <CssBaseline />
+      <Container>
+        <Head>
+          <title>Himalayan Bhutan</title>
+        </Head>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <JourneyProvider>
             <Component {...pageProps} />
-          </ThemeProvider>
-        </Container>
-      </Provider>
+          </JourneyProvider>
+        </ThemeProvider>
+      </Container>
     );
   }
 }
 
-export default withReduxStore(MyApp);
+export default MyApp;
