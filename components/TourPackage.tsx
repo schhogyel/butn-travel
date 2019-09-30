@@ -81,11 +81,7 @@ export default function TourPackage({ card, card: { img, name } }: any) {
   return (
     <Grid item xs={12} sm={6} md={4} className={classes.root}>
       <Card elevation={0} className={classes.card}>
-        <CardMedia
-          className={classes.media}
-          image={`${img}`}
-          title="Paella dish"
-        />
+        <CardMedia className={classes.media} image={`${img}`} title={name} />
         <Chip label="Most popular" className={classes.chip} />
         <CardContent>
           <Typography

@@ -18,7 +18,9 @@
     "numeral": "^2.0.6",
     "react": "latest",
     "react-dom": "latest",
+    "react-redux": "^7.1.1",
     "react-swipeable-views": "^0.13.3",
+    "redux": "^4.0.4",
     "yup": "^0.27.0"
   },
   "scripts": {
@@ -31,8 +33,10 @@
     "@storybook/addon-info": "^5.1.11",
     "@storybook/react": "^5.1.11",
     "@types/next": "latest",
+    "@types/next-redux-wrapper": "^2.0.2",
     "@types/react": "latest",
     "@types/react-dom": "latest",
+    "@types/react-redux": "^7.1.4",
     "@types/storybook__react": "^4.0.2",
     "awesome-typescript-loader": "^5.2.1",
     "eslint": "^6.2.2",
@@ -43,6 +47,7 @@
     "eslint-plugin-react-hooks": "^2.0.1",
     "react-docgen-typescript-loader": "^3.1.1",
     "react-docgen-typescript-webpack-plugin": "^1.1.0",
+    "redux-devtools-extension": "^2.13.8",
     "typescript": "latest"
   }
 }

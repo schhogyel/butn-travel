@@ -3,15 +3,13 @@ import Grid from '@material-ui/core/Grid';
 import Typography from './Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import TourPackage from './TourPackage';
+import TourCard from './TourCard';
 import { tourPackages } from '../constants';
-import Button from './Button';
-import SwipeableViews from 'react-swipeable-views';
 
 const useStyles = makeStyles(theme => ({
   root: {
-    // background: "#f5f5f5"
-    background: theme.color.neutral[100]
+    // background: "#efeee5"
+    background: theme.palette.primary.main
   },
   icon: {
     marginRight: theme.spacing(2)
@@ -43,16 +41,12 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(6)
   },
   title: {
-    paddingBottom: theme.spacing(3)
-  },
-  moreButton: {
-    display: 'flex',
-    justifyContent: 'center',
-    marginTop: theme.spacing(4)
+    paddingBottom: theme.spacing(3),
+    color: '#fff'
   }
 }));
 
-export default function TourCarousel() {
+export default function TourList() {
   const classes = useStyles();
 
   return (
@@ -67,30 +61,13 @@ export default function TourCarousel() {
             className={classes.title}
             marked="center"
           >
-            Our Top Tours
+            Popular Destinations
           </Typography>
         </Grid>
-
-        <SwipeableViews enableMouseEvents>
+        <Grid container spacing={4}>
           {tourPackages
-            .map(card => <TourPackage key={card.id} card={card} />)
-            .reduce(
-              (accum: any[], curr: any): any => {
-                if (accum[accum.length - 1].length === 3) accum.push([]);
-                accum[accum.length - 1].push(curr);
-                return accum;
-              },
-              [[]]
-            )
-            .map(item => (
-              <Grid container>{item}</Grid>
-            ))}
-        </SwipeableViews>
-
-        <Grid className={classes.moreButton}>
-          <Button variant="contained" color="secondary">
-            More Tours
-          </Button>
+            .map(card => <TourCard key={card.id} card={card} />)
+            .slice(0, 8)}
         </Grid>
       </Container>
     </div>

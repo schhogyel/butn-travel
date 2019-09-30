@@ -7,11 +7,8 @@ import { TextField as MuiTextField } from 'formik-material-ui';
 const useStyles = makeStyles(theme => ({
   root: {
     padding: 0,
-    // padding: theme.spacing(1),
     backgroundColor: theme.palette.common.white,
-    'label + &': {
-      // marginTop: theme.spacing(3)
-    }
+    'label + &': {}
   },
   input: {
     minWidth: theme.spacing(6),
