@@ -1,10 +1,6 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
-
-// import MenuItem from '@material-ui/core/MenuItem';
-// import FormControl from '@material-ui/core/FormControl';
-// import Select from '@material-ui/core/Select';
 import { Theme, Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import Button from '../Button';
@@ -29,11 +25,6 @@ const useStyles = makeStyles((theme: Theme) => ({
     textAlign: 'left',
     color: theme.palette.text.secondary
   },
-  borderColumn: {
-    borderBottom: `1px solid ${theme.palette.grey['100']}`,
-    paddingBottom: 24,
-    marginBottom: 24
-  },
   topInfo: {
     display: 'flex',
     justifyContent: 'space-between',
@@ -47,9 +38,6 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 export default function DetailsInformation() {
   const classes = useStyles();
-  // function handleChange() {
-  //   console.log();
-  // }
   return (
     <div className={classes.bigContainer}>
       <Paper className={classes.paper}>
@@ -76,13 +64,11 @@ export default function DetailsInformation() {
             </Button>
           </div>
         </div>
-        <div className={classes.borderColumn}>
-          <Grid item container style={{ marginBottom: 32 }} spacing={1}>
-            <Grid item xs={6}>
-              <TravellerForm />
-            </Grid>
+        <Grid item container style={{ marginBottom: 32 }} spacing={1}>
+          <Grid item xs={6}>
+            <TravellerForm />
           </Grid>
-        </div>
+        </Grid>
       </Paper>
     </div>
   );
