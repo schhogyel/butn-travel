@@ -14,7 +14,6 @@ import { MuiPickersUtilsProvider, DatePicker } from '@material-ui/pickers';
 import 'date-fns';
 import Button from './Button';
 import Typography from './Typography';
-// import { TextField } from "formik-material-ui";
 
 const useStyles = makeStyles(theme => ({
   form: {

@@ -80,7 +80,7 @@ export default function TourPackage({ card, card: { img, name } }: any) {
 
   return (
     <Grid item xs={12} sm={6} md={4} className={classes.root}>
-      <Card elevation={0} square={true} className={classes.card}>
+      <Card elevation={0} className={classes.card}>
         <CardMedia
           className={classes.media}
           image={`${img}`}
