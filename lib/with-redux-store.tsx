@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { initializeStore, initialState } from '../store';
+import { configureStore } from '../store';
 
 const isServer = typeof window === 'undefined';
 const __NEXT_REDUX_STORE__ = '__NEXT_REDUX_STORE__';
@@ -11,15 +11,15 @@ declare global {
   }
 }
 
-function getOrCreateStore(initialState: any) {
+function getOrCreateStore() {
   // Always make a new store if server, otherwise state is shared between requests
   if (isServer) {
-    return initializeStore(initialState);
+    return configureStore();
   }
 
   // Store in global variable if client
   if (!window[__NEXT_REDUX_STORE__]) {
-    window[__NEXT_REDUX_STORE__] = initializeStore(initialState);
+    window[__NEXT_REDUX_STORE__] = configureStore();
   }
   return window[__NEXT_REDUX_STORE__];
 }
@@ -33,7 +33,7 @@ const withReduxStore = (Component: React.ComponentClass<Props>) => {
     private reduxStore: any;
 
     static async getInitialProps(appContext: any) {
-      const reduxStore = getOrCreateStore(initialState);
+      const reduxStore = getOrCreateStore();
 
       // Provide the store to getInitialProps of pages
       appContext.ctx.reduxStore = reduxStore;
@@ -51,7 +51,7 @@ const withReduxStore = (Component: React.ComponentClass<Props>) => {
 
     constructor(props: any) {
       super(props);
-      this.reduxStore = getOrCreateStore(props.initialReduxState);
+      this.reduxStore = getOrCreateStore();
     }
 
     render() {

@@ -1,17 +1,13 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
-// import CardHeader from "@material-ui/core/CardHeader";
 import Grid from '@material-ui/core/Grid';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import Chip from '@material-ui/core/Chip';
-// import IconButton from "@material-ui/core/IconButton";
 import Typography from '@material-ui/core/Typography';
 import { red } from '@material-ui/core/colors';
-// import FavoriteIcon from "@material-ui/icons/Favorite";
-// import ShareIcon from "@material-ui/icons/Share";
 import Button from './Button';
 import Link from 'next/link';
 
@@ -21,12 +17,6 @@ const useStyles = makeStyles(theme => ({
   },
   card: {
     position: 'relative'
-    // transition: "0.3s cubic-bezier(.47,1.64,.41,.8)",
-
-    // "&:hover": {
-    //   transform: "scale(1.04)",
-    //   boxShadow: "0 4px 20px 0 rgba(0,0,0,255,.5)"
-    // }
   },
   media: {
     height: 0,
@@ -94,13 +84,6 @@ export default function TourPackage({ card, card: { img, name } }: any) {
           </Typography>
         </CardContent>
         <CardActions disableSpacing>
-          {/* <IconButton aria-label="add to favorites">
-            <FavoriteIcon />
-          </IconButton>
-          <IconButton aria-label="share">
-            <ShareIcon />
-          </IconButton> */}
-
           <Link
             href={{
               pathname: '/tour',
