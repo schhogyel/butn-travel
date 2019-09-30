@@ -1,16 +1,16 @@
-import React from "react";
-import Grid from "@material-ui/core/Grid";
-import Typography from "./Typography";
-import { makeStyles } from "@material-ui/core/styles";
-import Container from "@material-ui/core/Container";
-import TourPackage from "./TourPackage";
-import { tourPackages } from "../constants";
-import Button from "./Button";
+import React from 'react';
+import Grid from '@material-ui/core/Grid';
+import Typography from './Typography';
+import { makeStyles } from '@material-ui/core/styles';
+import Container from '@material-ui/core/Container';
+import TourPackage from './TourPackage';
+import { tourPackages } from '../constants';
+import Button from './Button';
 
 const useStyles = makeStyles(theme => ({
   root: {
     // background: "#f5f5f5"
-    background: "#efeee5"
+    background: theme.color.neutral[500]
   },
   icon: {
     marginRight: theme.spacing(2)
@@ -27,12 +27,12 @@ const useStyles = makeStyles(theme => ({
     paddingBottom: theme.spacing(8)
   },
   card: {
-    height: "100%",
-    display: "flex",
-    flexDirection: "column"
+    height: '100%',
+    display: 'flex',
+    flexDirection: 'column'
   },
   cardMedia: {
-    paddingTop: "56.25%" // 16:9
+    paddingTop: '56.25%' // 16:9
   },
   cardContent: {
     flexGrow: 1
@@ -45,8 +45,8 @@ const useStyles = makeStyles(theme => ({
     paddingBottom: theme.spacing(3)
   },
   moreButton: {
-    display: "flex",
-    justifyContent: "center",
+    display: 'flex',
+    justifyContent: 'center',
     marginTop: theme.spacing(4)
   }
 }));
@@ -66,7 +66,7 @@ export default function TourList() {
             className={classes.title}
             marked="center"
           >
-            Our Top Tours
+            Popular Tours
           </Typography>
         </Grid>
         <Grid container spacing={4}>

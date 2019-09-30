@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   root: {
     display: 'flex',
     overflow: 'hidden',
-    backgroundColor: theme.palette.secondary.light
+    backgroundColor: theme.color.neutral[50]
   },
   container: {
     marginTop: theme.spacing(15),

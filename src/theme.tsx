@@ -1,17 +1,67 @@
-import { createMuiTheme } from "@material-ui/core/styles";
-import { grey, red } from "@material-ui/core/colors";
+import { createMuiTheme } from '@material-ui/core/styles';
+import { grey, red } from '@material-ui/core/colors';
+
+declare module '@material-ui/core/styles/createMuiTheme' {
+  interface Theme {
+    color: {
+      neutral: {
+        '50': string;
+        '100': string;
+        '200': string;
+        '300'?: string;
+        '400'?: string;
+        '500'?: string;
+        '600'?: string;
+        '700'?: string;
+        '800'?: string;
+        '900'?: string;
+      };
+    };
+  }
+  // allow configuration using `createMuiTheme`
+  interface ThemeOptions {
+    color?: {
+      neutral?: {
+        '50'?: string;
+        '100'?: string;
+        '200'?: string;
+        '300'?: string;
+        '400'?: string;
+        '500'?: string;
+        '600'?: string;
+        '700'?: string;
+        '800'?: string;
+        '900'?: string;
+      };
+    };
+  }
+}
 
 const rawTheme = createMuiTheme({
+  color: {
+    neutral: {
+      '50': '#F5F7FA',
+      '100': '#E4E7EB',
+      '200': '#CBD2D9',
+      '300': '#9AA5B1',
+      '400': '#7B8794',
+      '500': '#616E7C',
+      '600': '#52606D',
+      '700': '#3E4C59',
+      '800': '#323F4B',
+      '900': '#1F2933'
+    }
+  },
   palette: {
     primary: {
-      light: "#63a4f",
-      main: "#1f2746",
-      dark: "#004ba0"
+      light: '#2D3A8C',
+      main: '#19216C',
+      dark: '#19216C'
     },
     secondary: {
-      light: "#fff5f8",
-      main: "#c62a82",
-      dark: "#e62958"
+      light: '#F9703E',
+      main: '#F35627',
+      dark: '#DE3A11'
     },
     error: {
       main: red[500],
@@ -56,7 +106,7 @@ const theme = {
       ...rawTheme.typography.h2,
       ...fontHeader,
       fontSize: 48,
-      [rawTheme.breakpoints.down("sm")]: {
+      [rawTheme.breakpoints.down('sm')]: {
         fontSize: 24
       }
     },
