@@ -1,6 +1,7 @@
 import React from 'react';
 import { Formik, Form, Field, FieldArray } from 'formik';
 import TextField from '../TextField';
+
 // import Button from '../Button';
 import {
   Grid,
@@ -25,37 +26,41 @@ const FormSchema = Yup.object().shape({
     .required('Email is required')
 });
 
+interface Traveller {
+  title: string;
+  fullName: string;
+  dateOfBirth: Date;
+  hasPassport: boolean;
+  country: string;
+  passportNumber: string;
+  expiry: Date;
+}
+
+const getInitialTraveller = (noOfTravellers: number): Array<Traveller> => {
+  let arr = [];
+  let traveller = {
+    title: '',
+    fullName: '',
+    dateOfBirth: new Date(),
+    hasPassport: false,
+    country: '',
+    passportNumber: '',
+    expiry: new Date()
+  };
+  for (let i = 0; i <= noOfTravellers - 1; i++) {
+    arr.push(traveller);
+  }
+
+  return arr;
+};
+
 const TravellerForm: React.SFC = () => {
   const classes = useStyles();
   return (
     <div>
       <Formik
         initialValues={{
-          travellers: [
-            {
-              title: '',
-              fullName: '',
-              dateOfBirth: '',
-              hasPassport: false,
-              country: '',
-              passportNumber: '',
-              expiry: ''
-            },
-            {
-              title: '',
-              fullName: '',
-              dateOfBirth: '',
-              hasPassport: false,
-              country: '',
-              passportNumber: '',
-              expiry: ''
-            }
-          ],
-          contactPerson: '',
-          address: '',
-          phone: '',
-          email: '',
-          confirmEmail: ''
+          travellers: getInitialTraveller(2)
         }}
         validationSchema={FormSchema}
         onSubmit={(values, { setSubmitting }) => {
@@ -175,58 +180,6 @@ const TravellerForm: React.SFC = () => {
                   </React.Fragment>
                 )}
               </FieldArray>
-              <Grid item xs={4}>
-                <Typography variant="subtitle1" style={{ fontWeight: 'bold' }}>
-                  Contact Details
-                </Typography>
-              </Grid>
-              <Grid item xs={8}>
-                <Field
-                  type="text"
-                  name="contactPerson"
-                  label="Who to contact"
-                  margin="normal"
-                  variant="outlined"
-                  fullWidth
-                  component={TextField}
-                />
-                <Field
-                  type="text"
-                  name="address"
-                  label="Address"
-                  margin="normal"
-                  variant="outlined"
-                  fullWidth
-                  component={TextField}
-                />
-                <Field
-                  type="text"
-                  name="phone"
-                  label="Phone No."
-                  margin="normal"
-                  variant="outlined"
-                  fullWidth
-                  component={TextField}
-                />
-                <Field
-                  type="text"
-                  name="email"
-                  label="Email"
-                  margin="normal"
-                  variant="outlined"
-                  fullWidth
-                  component={TextField}
-                />
-                <Field
-                  type="text"
-                  name="confirmEmail"
-                  label="Confirm Email"
-                  margin="normal"
-                  variant="outlined"
-                  fullWidth
-                  component={TextField}
-                />
-              </Grid>
             </Grid>
           </Form>
         )}

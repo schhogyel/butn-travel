@@ -3,7 +3,6 @@ import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import { Theme, Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
-import Button from '../Button';
 import TravellerForm from './TravellerForm';
 
 const numeral = require('numeral');
@@ -36,7 +35,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   }
 }));
 
-export default function DetailsInformation() {
+export default function TravellersInformation() {
   const classes = useStyles();
   return (
     <div className={classes.bigContainer}>
@@ -53,15 +52,6 @@ export default function DetailsInformation() {
             <Typography variant="body1" gutterBottom>
               We need some details about any information
             </Typography>
-          </div>
-          <div>
-            <Button
-              variant="outlined"
-              size="large"
-              className={classes.outlinedButtom}
-            >
-              Edit
-            </Button>
           </div>
         </div>
         <Grid item container style={{ marginBottom: 32 }} spacing={1}>

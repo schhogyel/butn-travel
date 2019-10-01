@@ -8,7 +8,8 @@ import StepLabel from '@material-ui/core/StepLabel';
 import { Theme, Container } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import TourInformation from './TourInformation';
-import DetailsInformation from './DetailsInformation';
+import TravellersInformation from './TravellersInformation';
+import ContactDetails from './ContactDetails';
 import Confirmation from './Confirmation';
 
 const numeral = require('numeral');
@@ -59,7 +60,12 @@ const useStyles = makeStyles((theme: Theme) => ({
 }));
 
 const getSteps = () => {
-  return ['Tour Information', 'Travellers Information', 'Payment'];
+  return [
+    'Tour Information',
+    'Travellers Information',
+    'Contact Details',
+    'Payment'
+  ];
 };
 
 function Wizard() {
@@ -74,10 +80,10 @@ function Wizard() {
   };
 
   function stepActions() {
-    if (activeStep === 2) {
+    if (activeStep === 3) {
       return 'Payment';
     }
-    return 'Next';
+    return 'Continue';
   }
   const classes = useStyles();
   const steps = getSteps();
@@ -112,10 +118,11 @@ function Wizard() {
                     </Stepper>
                   </div>
                   {activeStep === 0 && <TourInformation />}
-                  {activeStep === 1 && <DetailsInformation />}
-                  {activeStep === 2 && <Confirmation />}
+                  {activeStep === 1 && <TravellersInformation />}
+                  {activeStep === 2 && <ContactDetails />}
+                  {activeStep === 3 && <Confirmation />}
                   <div className={classes.flexBar}>
-                    {activeStep !== 2 && (
+                    {activeStep !== 3 && (
                       <Button
                         disabled={activeStep === 0}
                         onClick={handleBack}
