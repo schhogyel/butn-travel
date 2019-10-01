@@ -22,10 +22,16 @@ const useStyles = makeStyles((theme: Theme) => ({
     backgroundSize: 'cover',
     backgroundPosition: '0 400px',
     marginTop: 10,
-    padding: 20,
+    padding: 10,
     paddingTop: 60,
-    paddingBottom: 200,
-    backgroundColor: theme.color.neutral[50]
+    paddingBottom: theme.spacing(2),
+    backgroundColor: theme.color.neutral[50],
+
+    [theme.breakpoints.up('md')]: {
+      padding: 20,
+      paddingTop: 60,
+      paddingBottom: 200
+    }
   },
   grid: {
     margin: `0 ${theme.spacing(2)}px`
@@ -46,7 +52,10 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 
   stepper: {
-    backgroundColor: 'transparent'
+    backgroundColor: 'transparent',
+    [theme.breakpoints.down('xs')]: {
+      padding: theme.spacing(2, 0)
+    }
   },
   flexBar: {
     marginTop: 32,
@@ -54,8 +63,12 @@ const useStyles = makeStyles((theme: Theme) => ({
     justifyContent: 'center'
   },
   cardGrid: {
+    padding: 0,
     paddingTop: theme.spacing(3),
-    paddingBottom: theme.spacing(3)
+    paddingBottom: theme.spacing(1),
+    [theme.breakpoints.up('md')]: {
+      padding: theme.spacing(3, 2)
+    }
   }
 }));
 

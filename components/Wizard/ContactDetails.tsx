@@ -55,7 +55,7 @@ export default function ContactDetails() {
           </div>
         </div>
         <Grid item container style={{ marginBottom: 32 }} spacing={1}>
-          <Grid item xs={6}>
+          <Grid item xs={12} md={6}>
             <ContactDetailsForm />
           </Grid>
         </Grid>

@@ -39,12 +39,12 @@ const ContactDetailsForm: React.SFC = () => {
         {() => (
           <Form>
             <Grid container spacing={2}>
-              <Grid item xs={4}>
+              <Grid item xs={12} md={4}>
                 <Typography variant="subtitle1" style={{ fontWeight: 'bold' }}>
                   Contact Details
                 </Typography>
               </Grid>
-              <Grid item xs={8}>
+              <Grid item xs={12} md={8}>
                 <Field
                   type="text"
                   name="contactPerson"

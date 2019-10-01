@@ -77,7 +77,7 @@ const TravellerForm: React.SFC = () => {
                     {values.travellers && values.travellers.length > 0
                       ? values.travellers.map((_, index) => (
                           <React.Fragment key={index}>
-                            <Grid item xs={4}>
+                            <Grid item xs={12} md={4}>
                               <Typography
                                 variant="subtitle1"
                                 style={{ fontWeight: 'bold' }}
@@ -86,7 +86,7 @@ const TravellerForm: React.SFC = () => {
                               </Typography>
                             </Grid>
 
-                            <Grid item xs={8}>
+                            <Grid item xs={12} md={8}>
                               <Field
                                 label="Title"
                                 type="text"
@@ -136,8 +136,8 @@ const TravellerForm: React.SFC = () => {
                             </Grid>
                             {values.travellers[index].hasPassport && (
                               <React.Fragment>
-                                <Grid item xs={4}></Grid>
-                                <Grid item xs={8}>
+                                <Grid item xs={12} md={4}></Grid>
+                                <Grid item xs={12} md={8}>
                                   <Field
                                     label="Country"
                                     type="text"
@@ -170,8 +170,8 @@ const TravellerForm: React.SFC = () => {
                                 </Grid>
                               </React.Fragment>
                             )}
-                            <Grid item xs={4}></Grid>
-                            <Grid item xs={8}>
+                            <Grid item xs={12} md={4}></Grid>
+                            <Grid item xs={12} md={8}>
                               <Divider style={{ width: '100%' }} />
                             </Grid>
                           </React.Fragment>
