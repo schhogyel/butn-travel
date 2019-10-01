@@ -13,6 +13,7 @@ import {
 } from '@material-ui/core';
 import * as Yup from 'yup';
 import { makeStyles } from '@material-ui/styles';
+import { DatePickerField } from '../QuickForm';
 
 const useStyles = makeStyles((theme: Theme) => ({
   switchContainer: {
@@ -88,33 +89,35 @@ const TravellerForm: React.SFC = () => {
 
                             <Grid item xs={12} md={8}>
                               <Field
-                                label="Title"
                                 type="text"
+                                label="Title"
                                 name={`travellers.${index}.title`}
                                 margin="normal"
-                                variant="outlined"
                                 fullWidth
                                 component={TextField}
                               />
 
                               <Field
-                                label="Name"
                                 type="text"
+                                label="Full Name"
                                 name={`travellers.${index}.fullName`}
                                 margin="normal"
-                                variant="outlined"
                                 fullWidth
                                 component={TextField}
                               />
 
                               <Field
-                                label="Date of Birth"
                                 type="text"
+                                label="Date of Birth"
                                 name={`travellers.${index}.dateOfBirth`}
                                 margin="normal"
-                                variant="outlined"
                                 fullWidth
-                                component={TextField}
+                                component={(props: any) => (
+                                  <DatePickerField
+                                    format={'eee dd/MM/yyyy'}
+                                    {...props}
+                                  />
+                                )}
                               />
                             </Grid>
                             <Grid

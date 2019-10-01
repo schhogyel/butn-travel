@@ -7,7 +7,7 @@ import { TextField as MuiTextField } from 'formik-material-ui';
 const useStyles = makeStyles(theme => ({
   root: {
     padding: 0,
-    backgroundColor: theme.palette.common.white,
+    // backgroundColor: theme.palette.common.white,
     'label + &': {}
   },
   input: {
@@ -44,8 +44,13 @@ const useStyles = makeStyles(theme => ({
     padding: 25,
     width: `calc(100% - ${25 * 2}px)`
   },
+
   formLabel: {
     // fontSize: 18
+    color: theme.color.neutral[400],
+    '&.Mui-focused': {
+      color: theme.color.neutral[400]
+    }
   },
   select: {
     height: 'auto',

@@ -43,7 +43,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const DatePickerField = (props: any) => {
+export const DatePickerField = (props: any) => {
   const classes = useStyles();
   const currentError = props.form.errors[props.field.name];
 
@@ -64,8 +64,8 @@ const DatePickerField = (props: any) => {
           }}
           name={props.field.name}
           value={props.field.value}
-          format="eee dd/MM/yyyy"
-          // TextFieldComponent={TextField}
+          format={props.format}
+          TextFieldComponent={props.TextFieldComponent}
           helperText={currentError}
           error={Boolean(currentError)}
           onError={error => {
@@ -154,11 +154,21 @@ const QuickForm = () => {
             </Grid>
             <Grid item xs={12}>
               <InputLabel className={classes.label}> Arrival</InputLabel>
-              <Field name="arrival" component={DatePickerField} />
+              <Field
+                name="arrival"
+                component={(props: any) => (
+                  <DatePickerField format={'eee dd/MM/yyyy'} {...props} />
+                )}
+              />
             </Grid>
             <Grid item xs={12}>
               <InputLabel className={classes.label}> Departure</InputLabel>
-              <Field name="departure" component={DatePickerField} />
+              <Field
+                name="departure"
+                component={(props: any) => (
+                  <DatePickerField format={'eee dd/MM/yyyy'} {...props} />
+                )}
+              />
             </Grid>
             <Grid item xs={12}>
               <InputLabel className={classes.label}> Guests</InputLabel>
