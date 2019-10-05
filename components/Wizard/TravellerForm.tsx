@@ -172,7 +172,7 @@ const TravellerForm: React.SFC = () => {
                                         component={TextField}
                                       />
                                     </Grid>
-                                    <Grid item xs={12}>
+                                    <Grid item xs={12} md={6}>
                                       <InputLabel className={classes.label}>
                                         Passport Number
                                       </InputLabel>
@@ -183,7 +183,7 @@ const TravellerForm: React.SFC = () => {
                                         component={TextField}
                                       />
                                     </Grid>
-                                    <Grid item xs={12}>
+                                    <Grid item xs={12} md={6}>
                                       <InputLabel className={classes.label}>
                                         Expiry
                                       </InputLabel>
