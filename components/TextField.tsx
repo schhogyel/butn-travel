@@ -12,10 +12,11 @@ const useStyles = makeStyles(theme => ({
   },
   input: {
     minWidth: theme.spacing(6),
-    backgroundColor: theme.palette.common.white,
+    backgroundColor: theme.palette.grey[300],
     '&$disabled': {
       backgroundColor: theme.palette.divider
-    }
+    },
+    borderRadius: theme.shape.borderRadius
   },
   inputBorder: {
     border: '1px solid #e9ddd0',
@@ -47,10 +48,12 @@ const useStyles = makeStyles(theme => ({
 
   formLabel: {
     // fontSize: 18
+    paddingLeft: theme.spacing(1),
     color: theme.color.neutral[400],
     '&.Mui-focused': {
       color: theme.color.neutral[400]
-    }
+    },
+    zIndex: 1
   },
   select: {
     height: 'auto',
@@ -82,11 +85,11 @@ function TextField(props: any) {
   return (
     <MuiTextField
       InputProps={{
-        // disableUnderline: true,
+        disableUnderline: true,
         classes: {
           root: classes.root,
           input: clsx(
-            // classes.input,
+            classes.input,
             classes.inputSizeMedium,
             {
               //   [classes.inputBorder]: !noBorder

@@ -9,13 +9,13 @@ import {
   InputAdornment,
   TextField
 } from '@material-ui/core';
-import { DateRangeTwoTone, PeopleTwoTone } from '@material-ui/icons';
-import DateFnsUtils from '@date-io/date-fns';
-import { MuiPickersUtilsProvider, DatePicker } from '@material-ui/pickers';
+import { PeopleTwoTone } from '@material-ui/icons';
 import 'date-fns';
 import Button from './Button';
 import Typography from './Typography';
 import JourneyContext from '../pages/JourneyContext';
+
+import DatePickerField from './DatePicker/DatePickerField';
 
 const useStyles = makeStyles(theme => ({
   form: {
@@ -42,46 +42,6 @@ const useStyles = makeStyles(theme => ({
     marginTop: theme.spacing(2)
   }
 }));
-
-export const DatePickerField = (props: any) => {
-  const classes = useStyles();
-  const currentError = props.form.errors[props.field.name];
-
-  return (
-    <MuiPickersUtilsProvider utils={DateFnsUtils}>
-      <Grid container>
-        <DatePicker
-          className={classes.inputStyle}
-          fullWidth
-          disablePast
-          InputProps={{
-            disableUnderline: true,
-            startAdornment: (
-              <InputAdornment position="start">
-                <DateRangeTwoTone />
-              </InputAdornment>
-            )
-          }}
-          name={props.field.name}
-          value={props.field.value}
-          format={props.format}
-          TextFieldComponent={props.TextFieldComponent}
-          helperText={currentError}
-          error={Boolean(currentError)}
-          onError={error => {
-            if (error !== currentError) {
-              props.form.setFieldError(props.field.name, error);
-            }
-          }}
-          onChange={date =>
-            props.form.setFieldValue(props.field.name, date, false)
-          }
-          {...props}
-        />
-      </Grid>
-    </MuiPickersUtilsProvider>
-  );
-};
 
 const ranges = getNumberOfGuest(10);
 

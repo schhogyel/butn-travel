@@ -9,15 +9,23 @@ import {
   FormControlLabel,
   Switch,
   Theme,
-  Divider
+  Divider,
+  InputLabel
 } from '@material-ui/core';
 import * as Yup from 'yup';
 import { makeStyles } from '@material-ui/styles';
-import { DatePickerField } from '../QuickForm';
+import DatePickerField from '../DatePicker/DatePickerField';
 
 const useStyles = makeStyles((theme: Theme) => ({
   switchContainer: {
     padding: theme.spacing(1)
+  },
+  label: {
+    fontSize: 16,
+    paddingBottom: theme.spacing(1)
+  },
+  datePicker: {
+    backgroundColor: theme.palette.grey[300]
   }
 }));
 
@@ -88,37 +96,48 @@ const TravellerForm: React.SFC = () => {
                             </Grid>
 
                             <Grid item xs={12} md={8}>
-                              <Field
-                                type="text"
-                                label="Title"
-                                name={`travellers.${index}.title`}
-                                margin="normal"
-                                fullWidth
-                                component={TextField}
-                              />
-
-                              <Field
-                                type="text"
-                                label="Full Name"
-                                name={`travellers.${index}.fullName`}
-                                margin="normal"
-                                fullWidth
-                                component={TextField}
-                              />
-
-                              <Field
-                                type="text"
-                                label="Date of Birth"
-                                name={`travellers.${index}.dateOfBirth`}
-                                margin="normal"
-                                fullWidth
-                                component={(props: any) => (
-                                  <DatePickerField
-                                    format={'eee dd/MM/yyyy'}
-                                    {...props}
+                              <Grid container spacing={2}>
+                                <Grid item xs={12}>
+                                  <InputLabel className={classes.label}>
+                                    Title
+                                  </InputLabel>
+                                  <Field
+                                    type="text"
+                                    name={`travellers.${index}.title`}
+                                    fullWidth
+                                    component={TextField}
                                   />
-                                )}
-                              />
+                                </Grid>
+                                <Grid xs={12} item>
+                                  <InputLabel className={classes.label}>
+                                    Full Name
+                                  </InputLabel>
+                                  <Field
+                                    type="text"
+                                    name={`travellers.${index}.fullName`}
+                                    fullWidth
+                                    component={TextField}
+                                  />
+                                </Grid>
+                                <Grid xs={12} item>
+                                  <InputLabel className={classes.label}>
+                                    Date of Birth
+                                  </InputLabel>
+                                  <Field
+                                    type="text"
+                                    name={`travellers.${index}.dateOfBirth`}
+                                    fullWidth
+                                    component={(props: any) => (
+                                      <DatePickerField
+                                        format={'dd/MM/yyyy'}
+                                        // TextFieldComponent={TextField}
+                                        datePickerStyles={classes.datePicker}
+                                        {...props}
+                                      />
+                                    )}
+                                  />
+                                </Grid>
+                              </Grid>
                             </Grid>
                             <Grid
                               container
@@ -141,35 +160,49 @@ const TravellerForm: React.SFC = () => {
                               <React.Fragment>
                                 <Grid item xs={12} md={4}></Grid>
                                 <Grid item xs={12} md={8}>
-                                  <Field
-                                    label="Country"
-                                    type="text"
-                                    name={`travellers.${index}.country`}
-                                    margin="normal"
-                                    variant="outlined"
-                                    fullWidth
-                                    component={TextField}
-                                  />
-
-                                  <Field
-                                    label="Passport Number"
-                                    type="text"
-                                    name={`travellers.${index}.passportNumber`}
-                                    margin="normal"
-                                    variant="outlined"
-                                    fullWidth
-                                    component={TextField}
-                                  />
-
-                                  <Field
-                                    label="Expiry"
-                                    type="text"
-                                    name={`travellers.${index}.expiry`}
-                                    margin="normal"
-                                    variant="outlined"
-                                    fullWidth
-                                    component={TextField}
-                                  />
+                                  <Grid container spacing={2}>
+                                    <Grid item xs={12}>
+                                      <InputLabel className={classes.label}>
+                                        Country
+                                      </InputLabel>
+                                      <Field
+                                        type="text"
+                                        name={`travellers.${index}.country`}
+                                        fullWidth
+                                        component={TextField}
+                                      />
+                                    </Grid>
+                                    <Grid item xs={12}>
+                                      <InputLabel className={classes.label}>
+                                        Passport Number
+                                      </InputLabel>
+                                      <Field
+                                        type="text"
+                                        name={`travellers.${index}.passportNumber`}
+                                        fullWidth
+                                        component={TextField}
+                                      />
+                                    </Grid>
+                                    <Grid item xs={12}>
+                                      <InputLabel className={classes.label}>
+                                        Expiry
+                                      </InputLabel>
+                                      <Field
+                                        type="text"
+                                        name={`travellers.${index}.expiry`}
+                                        fullWidth
+                                        component={(props: any) => (
+                                          <DatePickerField
+                                            format={'dd/MM/yyyy'}
+                                            datePickerStyles={
+                                              classes.datePicker
+                                            }
+                                            {...props}
+                                          />
+                                        )}
+                                      />
+                                    </Grid>
+                                  </Grid>
                                 </Grid>
                               </React.Fragment>
                             )}
