@@ -1,6 +1,7 @@
 import React from 'react';
 import { Formik, Form, Field, FieldArray } from 'formik';
 import TextField from '../TextField/TextField';
+import JourneyContext from '../../pages/JourneyContext';
 
 // import Button from '../Button';
 import {
@@ -65,11 +66,15 @@ const getInitialTraveller = (noOfTravellers: number): Array<Traveller> => {
 
 const TravellerForm: React.SFC = () => {
   const classes = useStyles();
+  const {
+    journey: { noOfTravellers }
+  } = React.useContext(JourneyContext);
+
   return (
     <div>
       <Formik
         initialValues={{
-          travellers: getInitialTraveller(2)
+          travellers: getInitialTraveller(noOfTravellers)
         }}
         validationSchema={FormSchema}
         onSubmit={(values, { setSubmitting }) => {

@@ -101,7 +101,7 @@ const QuickForm = () => {
       initialValues={{
         arrival: new Date(),
         departure: new Date(),
-        guests: ''
+        guests: '1'
       }}
     >
       {() => (
