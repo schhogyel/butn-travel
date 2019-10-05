@@ -47,7 +47,7 @@ export default function TravellersInformation() {
               style={{ fontWeight: 'bold' }}
               gutterBottom
             >
-              Details
+              Traveller Details
             </Typography>
             <Typography variant="body1" gutterBottom>
               We need some details about any information

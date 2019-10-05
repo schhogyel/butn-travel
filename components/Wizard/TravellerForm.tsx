@@ -1,6 +1,6 @@
 import React from 'react';
 import { Formik, Form, Field, FieldArray } from 'formik';
-import TextField from '../TextField';
+import TextField from '../TextField/TextField';
 
 // import Button from '../Button';
 import {
@@ -97,7 +97,7 @@ const TravellerForm: React.SFC = () => {
 
                             <Grid item xs={12} md={8}>
                               <Grid container spacing={2}>
-                                <Grid item xs={12}>
+                                <Grid item xs={4}>
                                   <InputLabel className={classes.label}>
                                     Title
                                   </InputLabel>
@@ -108,18 +108,7 @@ const TravellerForm: React.SFC = () => {
                                     component={TextField}
                                   />
                                 </Grid>
-                                <Grid xs={12} item>
-                                  <InputLabel className={classes.label}>
-                                    Full Name
-                                  </InputLabel>
-                                  <Field
-                                    type="text"
-                                    name={`travellers.${index}.fullName`}
-                                    fullWidth
-                                    component={TextField}
-                                  />
-                                </Grid>
-                                <Grid xs={12} item>
+                                <Grid xs={8} item>
                                   <InputLabel className={classes.label}>
                                     Date of Birth
                                   </InputLabel>
@@ -135,6 +124,17 @@ const TravellerForm: React.SFC = () => {
                                         {...props}
                                       />
                                     )}
+                                  />
+                                </Grid>
+                                <Grid xs={12} item>
+                                  <InputLabel className={classes.label}>
+                                    Full Name
+                                  </InputLabel>
+                                  <Field
+                                    type="text"
+                                    name={`travellers.${index}.fullName`}
+                                    fullWidth
+                                    component={TextField}
                                   />
                                 </Grid>
                               </Grid>

@@ -1,16 +1,17 @@
 import React from 'react';
 import { Formik, Form, Field } from 'formik';
-import TextField from '../TextField';
+import TextField from '../TextField/TextField';
 // import Button from '../Button';
-import { Grid, Typography } from '@material-ui/core';
+import { Grid, Typography, InputLabel, Theme } from '@material-ui/core';
 import * as Yup from 'yup';
-// import { makeStyles } from '@material-ui/styles';
+import { makeStyles } from '@material-ui/styles';
 
-// const useStyles = makeStyles((theme: Theme) => ({
-//   switchContainer: {
-//     padding: theme.spacing(1)
-//   }
-// }));
+const useStyles = makeStyles((theme: Theme) => ({
+  label: {
+    fontSize: 16,
+    paddingBottom: theme.spacing(1)
+  }
+}));
 
 const FormSchema = Yup.object().shape({
   email: Yup.string()
@@ -19,7 +20,7 @@ const FormSchema = Yup.object().shape({
 });
 
 const ContactDetailsForm: React.SFC = () => {
-  // const classes = useStyles();
+  const classes = useStyles();
   return (
     <div>
       <Formik
@@ -45,51 +46,57 @@ const ContactDetailsForm: React.SFC = () => {
                 </Typography>
               </Grid>
               <Grid item xs={12} md={8}>
-                <Field
-                  type="text"
-                  name="contactPerson"
-                  label="Who to contact"
-                  margin="normal"
-                  variant="outlined"
-                  fullWidth
-                  component={TextField}
-                />
-                <Field
-                  type="text"
-                  name="address"
-                  label="Address"
-                  margin="normal"
-                  variant="outlined"
-                  fullWidth
-                  component={TextField}
-                />
-                <Field
-                  type="text"
-                  name="phone"
-                  label="Phone No."
-                  margin="normal"
-                  variant="outlined"
-                  fullWidth
-                  component={TextField}
-                />
-                <Field
-                  type="text"
-                  name="email"
-                  label="Email"
-                  margin="normal"
-                  variant="outlined"
-                  fullWidth
-                  component={TextField}
-                />
-                <Field
-                  type="text"
-                  name="confirmEmail"
-                  label="Confirm Email"
-                  margin="normal"
-                  variant="outlined"
-                  fullWidth
-                  component={TextField}
-                />
+                <Grid container spacing={2}>
+                  <Grid item xs={12}>
+                    <InputLabel className={classes.label}>
+                      Who to contact
+                    </InputLabel>
+                    <Field
+                      type="text"
+                      name="contactPerson"
+                      fullWidth
+                      component={TextField}
+                    />
+                  </Grid>
+                  <Grid item xs={12}>
+                    <InputLabel className={classes.label}>Address</InputLabel>
+                    <Field
+                      type="text"
+                      name="address"
+                      fullWidth
+                      component={TextField}
+                    />
+                  </Grid>
+                  <Grid item xs={12}>
+                    <InputLabel className={classes.label}>Phone</InputLabel>
+                    <Field
+                      type="text"
+                      name="phone"
+                      fullWidth
+                      component={TextField}
+                    />
+                  </Grid>
+                  <Grid item xs={12}>
+                    <InputLabel className={classes.label}>Email</InputLabel>
+                    <Field
+                      type="text"
+                      name="email"
+                      fullWidth
+                      component={TextField}
+                    />
+                  </Grid>
+                  <Grid item xs={12}>
+                    <InputLabel className={classes.label}>
+                      Confirm email
+                    </InputLabel>
+                    <Field
+                      type="text"
+                      name="confirmEmail"
+                      fullWidth
+                      component={TextField}
+                    />
+                  </Grid>
+                </Grid>
               </Grid>
             </Grid>
           </Form>

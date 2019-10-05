@@ -20,6 +20,9 @@ const useStyles = makeStyles(theme => ({
   },
   buttonContainer: {
     marginTop: theme.spacing(2)
+  },
+  inputRoot: {
+    padding: theme.spacing(1, 0)
   }
 }));
 
@@ -41,7 +44,10 @@ export default function DatePickerField(props: any) {
               <InputAdornment position="start">
                 <DateRangeTwoTone />
               </InputAdornment>
-            )
+            ),
+            classes: {
+              input: classes.inputRoot
+            }
           }}
           name={props.field.name}
           value={props.field.value}
