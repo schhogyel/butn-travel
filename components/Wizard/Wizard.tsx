@@ -12,6 +12,9 @@ import TravellersInformation from './TravellersInformation';
 import ContactDetails from './ContactDetails';
 import Confirmation from './Confirmation';
 
+import { TravellerProvider } from './TravellerContext';
+import { Formik } from 'formik';
+
 const numeral = require('numeral');
 numeral.defaultFormat('0,000');
 
@@ -83,9 +86,16 @@ const getSteps = () => {
 
 function Wizard() {
   const [activeStep, setActiveStep] = React.useState(0);
+  // const { setTraveller } = React.useContext(TravellerContext);
+
+  const formRef = React.useRef<Formik>();
 
   const handleNext = () => {
-    setActiveStep(activeStep => activeStep + 1);
+    if (activeStep !== 1) {
+      setActiveStep(activeStep => activeStep + 1);
+    } else {
+      formRef.current && formRef.current.submitForm();
+    }
   };
 
   const handleBack = () => {
@@ -103,63 +113,70 @@ function Wizard() {
 
   return (
     <React.Fragment>
-      <CssBaseline />
-      <div className={classes.root}>
-        <Container className={classes.cardGrid} maxWidth="lg">
-          <Grid container justify="center">
-            <Grid
-              alignItems="center"
-              justify="center"
-              container
-              className={classes.grid}
-            >
-              <Grid item xs={12}>
-                <div className={classes.stepContainer}>
-                  <div className={classes.bigContainer}>
-                    <Stepper
-                      classes={{ root: classes.stepper }}
-                      activeStep={activeStep}
-                      alternativeLabel
-                    >
-                      {steps.map(label => {
-                        return (
-                          <Step key={label}>
-                            <StepLabel>{label}</StepLabel>
-                          </Step>
-                        );
-                      })}
-                    </Stepper>
-                  </div>
-                  {activeStep === 0 && <TourInformation />}
-                  {activeStep === 1 && <TravellersInformation />}
-                  {activeStep === 2 && <ContactDetails />}
-                  {activeStep === 3 && <Confirmation />}
-                  <div className={classes.flexBar}>
-                    {activeStep !== 3 && (
+      <TravellerProvider>
+        <CssBaseline />
+        <div className={classes.root}>
+          <Container className={classes.cardGrid} maxWidth="lg">
+            <Grid container justify="center">
+              <Grid
+                alignItems="center"
+                justify="center"
+                container
+                className={classes.grid}
+              >
+                <Grid item xs={12}>
+                  <div className={classes.stepContainer}>
+                    <div className={classes.bigContainer}>
+                      <Stepper
+                        classes={{ root: classes.stepper }}
+                        activeStep={activeStep}
+                        alternativeLabel
+                      >
+                        {steps.map(label => {
+                          return (
+                            <Step key={label}>
+                              <StepLabel>{label}</StepLabel>
+                            </Step>
+                          );
+                        })}
+                      </Stepper>
+                    </div>
+                    {activeStep === 0 && <TourInformation />}
+                    {activeStep === 1 && (
+                      <TravellersInformation
+                        formikSubmit={formRef}
+                        setActiveStep={setActiveStep}
+                      />
+                    )}
+                    {activeStep === 2 && <ContactDetails />}
+                    {activeStep === 3 && <Confirmation />}
+                    <div className={classes.flexBar}>
+                      {activeStep !== 3 && (
+                        <Button
+                          disabled={activeStep === 0}
+                          onClick={handleBack}
+                          className={classes.backButton}
+                          size="large"
+                        >
+                          Back
+                        </Button>
+                      )}
                       <Button
-                        disabled={activeStep === 0}
-                        onClick={handleBack}
-                        className={classes.backButton}
+                        variant="contained"
+                        color="primary"
+                        onClick={handleNext}
                         size="large"
                       >
-                        Back
+                        {stepActions()}
                       </Button>
-                    )}
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      onClick={handleNext}
-                      size="large"
-                    >
-                      {stepActions()}
-                    </Button>
+                    </div>
                   </div>
-                </div>
+                </Grid>
               </Grid>
             </Grid>
-          </Grid>
-        </Container>
-      </div>
+          </Container>
+        </div>
+      </TravellerProvider>
     </React.Fragment>
   );
 }

@@ -2,6 +2,7 @@ import React from 'react';
 import { Formik, Form, Field, FieldArray } from 'formik';
 import TextField from '../TextField/TextField';
 import JourneyContext from '../../pages/JourneyContext';
+import TravellerContext from './TravellerContext';
 
 // import Button from '../Button';
 import {
@@ -31,9 +32,13 @@ const useStyles = makeStyles((theme: Theme) => ({
 }));
 
 const FormSchema = Yup.object().shape({
-  email: Yup.string()
-    .email('Invalid emails address')
-    .required('Email is required')
+  title: Yup.string(),
+  fullName: Yup.string(),
+  dateOfBirth: Yup.string(),
+  hasPassport: Yup.boolean(),
+  country: Yup.string(),
+  passportNumber: Yup.string(),
+  expiry: Yup.string()
 });
 
 interface Traveller {
@@ -64,11 +69,15 @@ const getInitialTraveller = (noOfTravellers: number): Array<Traveller> => {
   return arr;
 };
 
-const TravellerForm: React.SFC = () => {
+const TravellerForm = (props: any) => {
   const classes = useStyles();
+  const { submit } = props;
+
   const {
     journey: { noOfTravellers }
   } = React.useContext(JourneyContext);
+
+  const { setTravellers } = React.useContext(TravellerContext);
 
   return (
     <div>
@@ -78,152 +87,157 @@ const TravellerForm: React.SFC = () => {
         }}
         validationSchema={FormSchema}
         onSubmit={(values, { setSubmitting }) => {
-          console.log(values);
+          setTravellers(values.travellers);
           setSubmitting(false);
+          props.setActiveStep((activeStep: number) => activeStep + 1);
         }}
+        ref={submit}
       >
-        {({ values, handleChange }) => (
-          <Form>
-            <Grid container spacing={2}>
-              <FieldArray name="travellers">
-                {() => (
-                  <React.Fragment>
-                    {values.travellers && values.travellers.length > 0
-                      ? values.travellers.map((_, index) => (
-                          <React.Fragment key={index}>
-                            <Grid item xs={12} md={4}>
-                              <Typography
-                                variant="subtitle1"
-                                style={{ fontWeight: 'bold' }}
-                              >
-                                Traveller {index + 1}
-                              </Typography>
-                            </Grid>
-
-                            <Grid item xs={12} md={8}>
-                              <Grid container spacing={2}>
-                                <Grid item xs={4}>
-                                  <InputLabel className={classes.label}>
-                                    Title
-                                  </InputLabel>
-                                  <Field
-                                    type="text"
-                                    name={`travellers.${index}.title`}
-                                    fullWidth
-                                    component={TextField}
-                                  />
-                                </Grid>
-                                <Grid xs={8} item>
-                                  <InputLabel className={classes.label}>
-                                    Date of Birth
-                                  </InputLabel>
-                                  <Field
-                                    type="text"
-                                    name={`travellers.${index}.dateOfBirth`}
-                                    fullWidth
-                                    component={(props: any) => (
-                                      <DatePickerField
-                                        format={'dd/MM/yyyy'}
-                                        // TextFieldComponent={TextField}
-                                        datePickerStyles={classes.datePicker}
-                                        {...props}
-                                      />
-                                    )}
-                                  />
-                                </Grid>
-                                <Grid xs={12} item>
-                                  <InputLabel className={classes.label}>
-                                    Full Name
-                                  </InputLabel>
-                                  <Field
-                                    type="text"
-                                    name={`travellers.${index}.fullName`}
-                                    fullWidth
-                                    component={TextField}
-                                  />
-                                </Grid>
+        {({ values, handleChange }) => {
+          return (
+            <Form>
+              <Grid container spacing={2}>
+                <FieldArray name="travellers">
+                  {() => (
+                    <React.Fragment>
+                      {values.travellers && values.travellers.length > 0
+                        ? values.travellers.map((_, index) => (
+                            <React.Fragment key={index}>
+                              <Grid item xs={12} md={4}>
+                                <Typography
+                                  variant="subtitle1"
+                                  style={{ fontWeight: 'bold' }}
+                                >
+                                  Traveller {index + 1}
+                                </Typography>
                               </Grid>
-                            </Grid>
-                            <Grid
-                              container
-                              justify="flex-end"
-                              className={classes.switchContainer}
-                            >
-                              <FormControlLabel
-                                control={
-                                  <Switch
-                                    name={`travellers.${index}.hasPassport`}
-                                    color="primary"
-                                    onChange={handleChange}
-                                  />
-                                }
-                                label="Do you have your passport details?"
-                                labelPlacement="start"
-                              />
-                            </Grid>
-                            {values.travellers[index].hasPassport && (
-                              <React.Fragment>
-                                <Grid item xs={12} md={4}></Grid>
-                                <Grid item xs={12} md={8}>
-                                  <Grid container spacing={2}>
-                                    <Grid item xs={12}>
-                                      <InputLabel className={classes.label}>
-                                        Country
-                                      </InputLabel>
-                                      <Field
-                                        type="text"
-                                        name={`travellers.${index}.country`}
-                                        fullWidth
-                                        component={TextField}
-                                      />
-                                    </Grid>
-                                    <Grid item xs={12} md={6}>
-                                      <InputLabel className={classes.label}>
-                                        Passport Number
-                                      </InputLabel>
-                                      <Field
-                                        type="text"
-                                        name={`travellers.${index}.passportNumber`}
-                                        fullWidth
-                                        component={TextField}
-                                      />
-                                    </Grid>
-                                    <Grid item xs={12} md={6}>
-                                      <InputLabel className={classes.label}>
-                                        Expiry
-                                      </InputLabel>
-                                      <Field
-                                        type="text"
-                                        name={`travellers.${index}.expiry`}
-                                        fullWidth
-                                        component={(props: any) => (
-                                          <DatePickerField
-                                            format={'dd/MM/yyyy'}
-                                            datePickerStyles={
-                                              classes.datePicker
-                                            }
-                                            {...props}
-                                          />
-                                        )}
-                                      />
-                                    </Grid>
+
+                              <Grid item xs={12} md={8}>
+                                <Grid container spacing={2}>
+                                  <Grid item xs={4}>
+                                    <InputLabel className={classes.label}>
+                                      Title
+                                    </InputLabel>
+                                    <Field
+                                      type="text"
+                                      name={`travellers.${index}.title`}
+                                      fullWidth
+                                      component={TextField}
+                                    />
+                                  </Grid>
+                                  <Grid xs={8} item>
+                                    <InputLabel className={classes.label}>
+                                      Date of Birth
+                                    </InputLabel>
+                                    <Field
+                                      type="text"
+                                      name={`travellers.${index}.dateOfBirth`}
+                                      fullWidth
+                                      component={(props: any) => (
+                                        <DatePickerField
+                                          format={'dd/MM/yyyy'}
+                                          // TextFieldComponent={TextField}
+                                          datePickerStyles={classes.datePicker}
+                                          {...props}
+                                        />
+                                      )}
+                                    />
+                                  </Grid>
+                                  <Grid xs={12} item>
+                                    <InputLabel className={classes.label}>
+                                      Full Name
+                                    </InputLabel>
+                                    <Field
+                                      type="text"
+                                      name={`travellers.${index}.fullName`}
+                                      fullWidth
+                                      component={TextField}
+                                    />
                                   </Grid>
                                 </Grid>
-                              </React.Fragment>
-                            )}
-                            <Grid item xs={12} md={4}></Grid>
-                            <Grid item xs={12} md={8}>
-                              <Divider style={{ width: '100%' }} />
-                            </Grid>
-                          </React.Fragment>
-                        ))
-                      : null}
-                  </React.Fragment>
-                )}
-              </FieldArray>
-            </Grid>
-          </Form>
-        )}
+                              </Grid>
+                              <Grid
+                                container
+                                justify="flex-end"
+                                className={classes.switchContainer}
+                              >
+                                <FormControlLabel
+                                  control={
+                                    <Switch
+                                      name={`travellers.${index}.hasPassport`}
+                                      color="primary"
+                                      onChange={handleChange}
+                                    />
+                                  }
+                                  label="Do you have your passport details?"
+                                  labelPlacement="start"
+                                />
+                              </Grid>
+                              {values.travellers[index].hasPassport && (
+                                <React.Fragment>
+                                  <Grid item xs={12} md={4}></Grid>
+                                  <Grid item xs={12} md={8}>
+                                    <Grid container spacing={2}>
+                                      <Grid item xs={12}>
+                                        <InputLabel className={classes.label}>
+                                          Country
+                                        </InputLabel>
+                                        <Field
+                                          type="text"
+                                          name={`travellers.${index}.country`}
+                                          fullWidth
+                                          component={TextField}
+                                        />
+                                      </Grid>
+                                      <Grid item xs={12} md={6}>
+                                        <InputLabel className={classes.label}>
+                                          Passport Number
+                                        </InputLabel>
+                                        <Field
+                                          type="text"
+                                          name={`travellers.${index}.passportNumber`}
+                                          fullWidth
+                                          component={TextField}
+                                        />
+                                      </Grid>
+                                      <Grid item xs={12} md={6}>
+                                        <InputLabel className={classes.label}>
+                                          Expiry
+                                        </InputLabel>
+                                        <Field
+                                          type="text"
+                                          name={`travellers.${index}.expiry`}
+                                          fullWidth
+                                          component={(props: any) => (
+                                            <DatePickerField
+                                              format={'dd/MM/yyyy'}
+                                              datePickerStyles={
+                                                classes.datePicker
+                                              }
+                                              {...props}
+                                            />
+                                          )}
+                                        />
+                                      </Grid>
+                                    </Grid>
+                                  </Grid>
+                                </React.Fragment>
+                              )}
+                              <Grid item xs={12} md={4}></Grid>
+                              <Grid item xs={12} md={8}>
+                                <Divider style={{ width: '100%' }} />
+                              </Grid>
+                            </React.Fragment>
+                          ))
+                        : null}
+                    </React.Fragment>
+                  )}
+                </FieldArray>
+              </Grid>
+              <button type="submit">Submit</button>
+            </Form>
+          );
+        }}
       </Formik>
     </div>
   );

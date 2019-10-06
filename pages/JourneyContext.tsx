@@ -14,7 +14,7 @@ interface JourneyContext {
 const defaultJourney: Journey = {
   arrivalDate: Date.now(),
   departureDate: Date.now(),
-  noOfTravellers: 0
+  noOfTravellers: 1
 };
 
 const defaultJourneyContext = {

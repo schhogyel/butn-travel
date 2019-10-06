@@ -85,8 +85,7 @@ const CustomSelect = (props: any) => {
 
 const QuickForm = () => {
   const classes = useStyles();
-  const { journey, setJourney } = React.useContext(JourneyContext);
-  console.log(journey);
+  const { setJourney } = React.useContext(JourneyContext);
 
   return (
     <Formik

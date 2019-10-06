@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   }
 }));
 
-export default function TravellersInformation() {
+export default function TravellersInformation(props: any) {
   const classes = useStyles();
   return (
     <div className={classes.bigContainer}>
@@ -56,7 +56,10 @@ export default function TravellersInformation() {
         </div>
         <Grid item container style={{ marginBottom: 32 }} spacing={1}>
           <Grid item xs={12} md={6}>
-            <TravellerForm />
+            <TravellerForm
+              submit={props.formikSubmit}
+              setActiveStep={props.setActiveStep}
+            />
           </Grid>
         </Grid>
       </Paper>

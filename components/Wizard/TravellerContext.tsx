@@ -5,9 +5,9 @@ interface Traveller {
   dateOfBirth: Date;
   fullName: string;
   hasPassport: boolean;
-  country: string;
-  passportNumber: string;
-  passportExpiry: Date;
+  country?: string;
+  passportNumber?: string;
+  passportExpiry?: Date;
 }
 interface ContactDetails {
   primaryContact: string;
@@ -18,9 +18,9 @@ interface ContactDetails {
 }
 
 interface TravellerContext {
-  traveller: Traveller;
+  travellers: Array<Traveller>;
   contactDetails: ContactDetails;
-  setTraveller: React.Dispatch<React.SetStateAction<Traveller>>;
+  setTravellers: React.Dispatch<React.SetStateAction<Traveller[]>>;
   setContactDetails: React.Dispatch<React.SetStateAction<ContactDetails>>;
 }
 
@@ -43,9 +43,9 @@ const initialContactDetails: ContactDetails = {
 };
 
 const initialTravellerContext = {
-  traveller: initialTraveller,
+  travellers: [initialTraveller],
   contactDetails: initialContactDetails,
-  setTraveller: (): void => {},
+  setTravellers: (): void => {},
   setContactDetails: (): void => {}
 };
 
@@ -54,13 +54,15 @@ const TravellerContext = React.createContext<TravellerContext>(
 );
 
 function TravellerProvider(props: any) {
-  const [traveller, setTraveller] = React.useState<Traveller>(initialTraveller);
+  const [travellers, setTravellers] = React.useState<Array<Traveller>>([
+    initialTraveller
+  ]);
   const [contactDetails, setContactDetails] = React.useState<ContactDetails>(
     initialContactDetails
   );
   return (
     <TravellerContext.Provider
-      value={{ traveller, setTraveller, contactDetails, setContactDetails }}
+      value={{ travellers, setTravellers, contactDetails, setContactDetails }}
     >
       {props.children}
     </TravellerContext.Provider>
