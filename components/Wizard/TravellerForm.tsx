@@ -37,13 +37,17 @@ const useStyles = makeStyles((theme: Theme) => ({
 }));
 
 const FormSchema = Yup.object().shape({
-  title: Yup.string(),
-  fullName: Yup.string(),
-  dateOfBirth: Yup.string(),
-  hasPassport: Yup.boolean(),
-  country: Yup.string(),
-  passportNumber: Yup.string(),
-  expiry: Yup.string()
+  travellers: Yup.array().of(
+    Yup.object().shape({
+      title: Yup.string(),
+      fullName: Yup.string().required('Name is required'),
+      dateOfBirth: Yup.string(),
+      hasPassport: Yup.boolean(),
+      country: Yup.string(),
+      passportNumber: Yup.string(),
+      expiry: Yup.string()
+    })
+  )
 });
 
 interface Traveller {
@@ -162,7 +166,7 @@ const TravellerForm = (props: any) => {
                                   </Grid>
                                   <Grid xs={12} item>
                                     <InputLabel className={classes.label}>
-                                      Full Name
+                                      Name
                                     </InputLabel>
                                     <Field
                                       type="text"
