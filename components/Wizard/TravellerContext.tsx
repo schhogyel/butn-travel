@@ -10,7 +10,7 @@ interface Traveller {
   passportExpiry?: Date;
 }
 interface ContactDetails {
-  primaryContact: string;
+  contactPerson: string;
   address: string;
   phone: string;
   email: string;
@@ -35,7 +35,7 @@ const initialTraveller: Traveller = {
 };
 
 const initialContactDetails: ContactDetails = {
-  primaryContact: '',
+  contactPerson: '',
   address: '',
   phone: '',
   email: '',

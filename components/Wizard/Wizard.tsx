@@ -86,12 +86,11 @@ const getSteps = () => {
 
 function Wizard() {
   const [activeStep, setActiveStep] = React.useState(0);
-  // const { setTraveller } = React.useContext(TravellerContext);
 
   const formRef = React.useRef<Formik>();
 
   const handleNext = () => {
-    if (activeStep !== 1) {
+    if (activeStep !== 1 && activeStep !== 2) {
       setActiveStep(activeStep => activeStep + 1);
     } else {
       formRef.current && formRef.current.submitForm();
@@ -148,7 +147,12 @@ function Wizard() {
                         setActiveStep={setActiveStep}
                       />
                     )}
-                    {activeStep === 2 && <ContactDetails />}
+                    {activeStep === 2 && (
+                      <ContactDetails
+                        formikSubmit={formRef}
+                        setActiveStep={setActiveStep}
+                      />
+                    )}
                     {activeStep === 3 && <Confirmation />}
                     <div className={classes.flexBar}>
                       {activeStep !== 3 && (

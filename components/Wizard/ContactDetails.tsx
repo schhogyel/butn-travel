@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   }
 }));
 
-export default function ContactDetails() {
+export default function ContactDetails(props: any) {
   const classes = useStyles();
   return (
     <div className={classes.bigContainer}>
@@ -56,7 +56,10 @@ export default function ContactDetails() {
         </div>
         <Grid item container style={{ marginBottom: 32 }} spacing={1}>
           <Grid item xs={12} md={6}>
-            <ContactDetailsForm />
+            <ContactDetailsForm
+              submit={props.formikSubmit}
+              setActiveStep={props.setActiveStep}
+            />
           </Grid>
         </Grid>
       </Paper>

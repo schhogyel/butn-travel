@@ -5,6 +5,7 @@ import TextField from '../TextField/TextField';
 import { Grid, Typography, InputLabel, Theme } from '@material-ui/core';
 import * as Yup from 'yup';
 import { makeStyles } from '@material-ui/styles';
+import TravellerContext from './TravellerContext';
 
 const useStyles = makeStyles((theme: Theme) => ({
   label: {
@@ -19,8 +20,10 @@ const FormSchema = Yup.object().shape({
     .required('Email is required')
 });
 
-const ContactDetailsForm: React.SFC = () => {
+const ContactDetailsForm = (props: any) => {
   const classes = useStyles();
+
+  const { setContactDetails } = React.useContext(TravellerContext);
   return (
     <div>
       <Formik
@@ -33,9 +36,11 @@ const ContactDetailsForm: React.SFC = () => {
         }}
         validationSchema={FormSchema}
         onSubmit={(values, { setSubmitting }) => {
-          console.log(values);
+          setContactDetails(values);
           setSubmitting(false);
+          props.setActiveStep((activeStep: number) => activeStep + 1);
         }}
+        ref={props.submit}
       >
         {() => (
           <Form>
