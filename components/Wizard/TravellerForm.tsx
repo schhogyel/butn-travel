@@ -17,8 +17,13 @@ import {
 import * as Yup from 'yup';
 import { makeStyles } from '@material-ui/styles';
 import DatePickerField from '../DatePicker/DatePickerField';
+import CustomSelect from '../TextField/CustomSelect';
 
 const useStyles = makeStyles((theme: Theme) => ({
+  inputStyle: {
+    padding: theme.spacing(1),
+    backgroundColor: theme.palette.grey[300]
+  },
   switchContainer: {
     padding: theme.spacing(1)
   },
@@ -79,6 +84,12 @@ const TravellerForm = (props: any) => {
 
   const { setTravellers } = React.useContext(TravellerContext);
 
+  const titleOptions = [
+    { label: 'Mr', value: 'Mr' },
+    { label: 'Mrs', value: 'Mrs' },
+    { label: 'Miss', value: 'Miss' }
+  ];
+
   return (
     <div>
       <Formik
@@ -122,7 +133,13 @@ const TravellerForm = (props: any) => {
                                       type="text"
                                       name={`travellers.${index}.title`}
                                       fullWidth
-                                      component={TextField}
+                                      component={(props: any) => (
+                                        <CustomSelect
+                                          options={titleOptions}
+                                          inputStyle={classes.inputStyle}
+                                          {...props}
+                                        />
+                                      )}
                                     />
                                   </Grid>
                                   <Grid xs={8} item>
@@ -234,7 +251,6 @@ const TravellerForm = (props: any) => {
                   )}
                 </FieldArray>
               </Grid>
-              <button type="submit">Submit</button>
             </Form>
           );
         }}

@@ -5,17 +5,16 @@ import {
   Grid,
   makeStyles,
   InputLabel,
-  MenuItem,
-  InputAdornment,
-  TextField
+  InputAdornment
 } from '@material-ui/core';
-import { PeopleTwoTone } from '@material-ui/icons';
 import 'date-fns';
 import Button from './Button';
 import Typography from './Typography';
 import JourneyContext from '../pages/JourneyContext';
 
 import DatePickerField from './DatePicker/DatePickerField';
+import CustomSelect from './TextField/CustomSelect';
+import { PeopleTwoTone } from '@material-ui/icons';
 
 const useStyles = makeStyles(theme => ({
   form: {
@@ -52,36 +51,6 @@ function getNumberOfGuest(num: number) {
   }
   return guestRanges;
 }
-
-const CustomSelect = (props: any) => {
-  const classes = useStyles();
-  return (
-    <TextField
-      select
-      fullWidth
-      className={classes.inputStyle}
-      name={props.field.name}
-      value={props.field.value}
-      onChange={(event: any) =>
-        props.form.setFieldValue(props.field.name, event.target.value, false)
-      }
-      InputProps={{
-        disableUnderline: true,
-        startAdornment: (
-          <InputAdornment position="start">
-            <PeopleTwoTone />
-          </InputAdornment>
-        )
-      }}
-    >
-      {ranges.map(option => (
-        <MenuItem key={option.value} value={option.value}>
-          {option.label}
-        </MenuItem>
-      ))}
-    </TextField>
-  );
-};
 
 const QuickForm = () => {
   const classes = useStyles();
@@ -131,7 +100,23 @@ const QuickForm = () => {
             </Grid>
             <Grid item xs={12}>
               <InputLabel className={classes.label}> Guests</InputLabel>
-              <Field name="guests" component={CustomSelect} />
+              <Field
+                name="guests"
+                component={(props: any) => (
+                  <CustomSelect
+                    options={ranges}
+                    InputProps={{
+                      disableUnderline: true,
+                      startAdornment: (
+                        <InputAdornment position="start">
+                          <PeopleTwoTone />
+                        </InputAdornment>
+                      )
+                    }}
+                    {...props}
+                  />
+                )}
+              />
             </Grid>
             <Grid item xs={12} className={classes.buttonContainer}>
               <Button
