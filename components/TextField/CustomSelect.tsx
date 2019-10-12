@@ -15,11 +15,12 @@ const useStyles = makeStyles(theme => ({
 
 export default (props: any) => {
   const classes = useStyles(props);
+  const { inputStyle, InputProps, ...otherProps } = props;
   return (
     <TextField
       select
       fullWidth
-      className={clsx(classes.inputStyle, props.inputStyle)}
+      className={clsx(classes.inputStyle, inputStyle)}
       value={props.field.value}
       onChange={(event: any) =>
         props.form.setFieldValue(props.field.name, event.target.value, false)
@@ -29,9 +30,9 @@ export default (props: any) => {
         classes: {
           input: classes.inputRoot
         },
-        ...props.InputProps
+        ...InputProps
       }}
-      {...props}
+      {...otherProps}
     >
       {props.options.map((option: any) => (
         <MenuItem key={option.value} value={option.value}>

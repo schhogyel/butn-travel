@@ -1,8 +1,16 @@
 import React from 'react';
-import { Formik, Form, Field, FieldArray } from 'formik';
+import {
+  Formik,
+  Form,
+  Field,
+  FieldArray,
+  FieldProps,
+  FormikProps
+} from 'formik';
 import TextField from '../TextField/TextField';
 import JourneyContext from '../../pages/JourneyContext';
 import TravellerContext from './TravellerContext';
+import CountryField from '../TextField/CountryField';
 
 // import Button from '../Button';
 import {
@@ -20,9 +28,16 @@ import DatePickerField from '../DatePicker/DatePickerField';
 import CustomSelect from '../TextField/CustomSelect';
 
 const useStyles = makeStyles((theme: Theme) => ({
+  inputRoot: {},
   inputStyle: {
     padding: theme.spacing(1),
     backgroundColor: theme.palette.grey[300]
+  },
+  customInputStyle: {
+    fontSize: 16,
+    padding: theme.spacing(2),
+    backgroundColor: theme.palette.grey[300],
+    borderRadius: theme.shape.borderRadius
   },
   switchContainer: {
     padding: theme.spacing(1)
@@ -60,6 +75,13 @@ interface Traveller {
   expiry: Date;
 }
 
+type FormikField<Value> = {
+  onChange: (e: React.ChangeEvent) => void;
+  onBlur: (e: React.ChangeEvent) => void;
+  value: Value | string;
+  name: string;
+};
+
 const getInitialTraveller = (noOfTravellers: number): Array<Traveller> => {
   let arr = [];
   let traveller = {
@@ -93,6 +115,16 @@ const TravellerForm = (props: any) => {
     { label: 'Mrs', value: 'Mrs' },
     { label: 'Miss', value: 'Miss' }
   ];
+
+  type Item = {};
+
+  function onSelection(
+    field: FormikField<Item>,
+    form: FormikProps<Item>,
+    item: Item
+  ) {
+    form.setFieldValue(field.name, item);
+  }
 
   return (
     <div>
@@ -199,7 +231,7 @@ const TravellerForm = (props: any) => {
                                   <Grid item xs={12} md={4}></Grid>
                                   <Grid item xs={12} md={8}>
                                     <Grid container spacing={2}>
-                                      <Grid item xs={12}>
+                                      {/* <Grid item xs={12}>
                                         <InputLabel className={classes.label}>
                                           Country
                                         </InputLabel>
@@ -209,6 +241,47 @@ const TravellerForm = (props: any) => {
                                           fullWidth
                                           component={TextField}
                                         />
+                                      </Grid> */}
+                                      <Grid item xs={12}>
+                                        <InputLabel className={classes.label}>
+                                          Country
+                                        </InputLabel>
+                                        <Field
+                                          type="text"
+                                          name={`travellers.${index}.country`}
+                                          fullWidth
+                                        >
+                                          {({
+                                            field,
+                                            form
+                                          }: FieldProps<Item>) => (
+                                            <CountryField
+                                              downshiftProps={{
+                                                selectedItem: field.value,
+                                                onChange: (
+                                                  selectedItem: Item
+                                                ) =>
+                                                  onSelection(
+                                                    field,
+                                                    form,
+                                                    selectedItem
+                                                  )
+                                              }}
+                                              field={field}
+                                              form={form}
+                                              textFieldProps={{
+                                                InputProps: {
+                                                  disableUnderline: true,
+                                                  classes: {
+                                                    root: classes.inputRoot,
+                                                    input:
+                                                      classes.customInputStyle
+                                                  }
+                                                }
+                                              }}
+                                            />
+                                          )}
+                                        </Field>
                                       </Grid>
                                       <Grid item xs={12} md={6}>
                                         <InputLabel className={classes.label}>
